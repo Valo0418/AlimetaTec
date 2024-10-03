@@ -3,9 +3,9 @@ package com.example.alimentaTec.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.alimentaTec.model.ActividadFisica;
+import com.example.alimentaTec.model.PhysicalActivity;
 
 @Repository
-public interface ActividadFisicaRepository extends JpaRepository<ActividadFisica, Integer> {
+public interface PhysicalActivityRepository extends JpaRepository<PhysicalActivity, Integer> {
     
 }
