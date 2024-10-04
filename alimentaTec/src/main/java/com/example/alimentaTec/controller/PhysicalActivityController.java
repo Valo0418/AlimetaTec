@@ -15,47 +15,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.alimentaTec.model.Saucer;
-import com.example.alimentaTec.service.SaucerService;
+import com.example.alimentaTec.model.PhysicalActivity;
+import com.example.alimentaTec.service.PhysicalActivityService;
 
 @RestController
-@RequestMapping("saucer")
+@RequestMapping("PhysicalActivity")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
-public class SaucerController {
+public class PhysicalActivityController {
 
 	@Autowired
-	private SaucerService service;
+	private PhysicalActivityService service;
 
 	@GetMapping
-	public List<Saucer> getAll() {
+	public List<PhysicalActivity> getAll() {
 		return service.getAll();
 	}
 
-	@GetMapping("{idSauser}")
-	public ResponseEntity<Saucer> getByIdSauser(@PathVariable Integer idSauser) {
-		Saucer saucer = service.getByIdSauser(idSauser);
-		return new ResponseEntity<Saucer>(saucer, HttpStatus.OK);
+	@GetMapping("{idActivity}")
+	public ResponseEntity<PhysicalActivity> getByIdActivity(@PathVariable Integer idActivity) {
+		PhysicalActivity physicalActivity = service.getByIdActivity(idActivity);
+		return new ResponseEntity<PhysicalActivity>(physicalActivity, HttpStatus.OK);
 	}
 
 	@PostMapping
-	public void register(@RequestBody Saucer saucer) {
-		service.save(saucer);
+	public void register(@RequestBody PhysicalActivity physicalActivity) {
+		service.save(physicalActivity);
 	}
 
-	@PutMapping("{idSauser}")
-	public ResponseEntity<?> update(@RequestBody Saucer saucer, @PathVariable Integer idSauser) {
+	@PutMapping("{idActivity}")
+	public ResponseEntity<?> update(@RequestBody PhysicalActivity physicalActivity, @PathVariable Integer idActivity) {
 
-		Saucer auxSaucer = service.getByIdSauser(idSauser);
-		saucer.setIdSauser(auxSaucer.getIdSauser());
-		service.save(saucer);
+		PhysicalActivity auxStudent = service.getByIdActivity(idActivity);
+		physicalActivity.setIdActivity(auxStudent.getIdActivity());
+		service.save(physicalActivity);
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
 
-	@DeleteMapping("{idSauser}")
-	public void delete(@PathVariable Integer idSauser) {
-		service.delete(idSauser);
+	@DeleteMapping("{idActivity}")
+	public void delete(@PathVariable Integer idActivity) {
+		service.delete(idActivity);
 	}
 
 }

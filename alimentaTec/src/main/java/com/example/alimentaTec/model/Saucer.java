@@ -1,34 +1,33 @@
 package com.example.alimentaTec.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class SaucerModel {
+public class Saucer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int dishId;
+    private int idSauser;
     private String nameSaucer;
     private String category;
     private String preparation;
 
-    public int getdishId(){return dishId;}
-    public void setdishId(int dishId){this.dishId = dishId;}
+    public int getIdSauser(){return idSauser;}
+    public void setIdSauser(int idSauser){this.idSauser = idSauser;}
 
-    public String getnameSaucer(){return nameSaucer;}
-    public void setnameSaucer(String nameSaucer){this.nameSaucer = nameSaucer;}
+    public String getNameSaucer(){return nameSaucer;}
+    public void setNameSaucer(String nameSaucer){this.nameSaucer = nameSaucer;}
     
     public String getCategory(){return category;}
     public void setCategory(String category){this.category = category;}
 
-    public String getpreparation(){return preparation;}
-    public void setpreparation(String preparation){this.preparation = preparation;}
+    public String getPreparation(){return preparation;}
+    public void setPreparation(String preparation){this.preparation = preparation;}
 
     @Override
     public String toString(){
-        return dishId + " :: " + nameSaucer + " :: " + category  + " :: " + preparation;
+        return idSauser + " :: " + nameSaucer + " :: " + category + " :: " + preparation;
     }
 }

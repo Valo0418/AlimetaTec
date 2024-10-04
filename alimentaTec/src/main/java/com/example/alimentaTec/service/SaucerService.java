@@ -5,29 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.alimentaTec.model.SaucerModel;
+import com.example.alimentaTec.model.Saucer;
 import com.example.alimentaTec.repository.SaucerRepository;
 import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
 public class SaucerService {
-    @Autowired
-    private SaucerRepository repo;
+	@Autowired
+	private SaucerRepository repo;
 
-    public List<SaucerModel> getAll(){
-        return repo.findAll();
-    }
-
-    public void save(SaucerModel saucerModel) {
-		repo.save(saucerModel);
+	public List<Saucer> getAll() {
+		return repo.findAll();
 	}
 
-	public SaucerModel getdishId(Integer dishid) {
-		return repo.findById(dishid).get();
+	public void save(Saucer saucer) {
+		repo.save(saucer);
 	}
 
-	public void delete(Integer dishid) {
-		repo.deleteById(dishid);
+	public Saucer getByIdSauser(Integer idSauser) {
+		return repo.findById(idSauser).get();
+	}
+
+	public void delete(Integer idSauser) {
+		repo.deleteById(idSauser);
 	}
 }
