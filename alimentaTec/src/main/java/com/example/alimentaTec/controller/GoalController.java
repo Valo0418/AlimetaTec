@@ -1,4 +1,4 @@
-package com.example.alimentaTec.controller;
+package com.example.alimentaTec.Controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
