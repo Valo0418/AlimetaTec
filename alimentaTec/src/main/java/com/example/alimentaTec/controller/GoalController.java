@@ -18,6 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.alimentaTec.model.Goal;
 import com.example.alimentaTec.service.GoalService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("Goal")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
@@ -28,20 +35,32 @@ public class GoalController {
 	@Autowired
 	private GoalService service;
 
+	@Operation(summary = "Get all Goal")
+	@ApiResponse(responseCode = "200", description = "Found Goal", content = {
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Goal.class))) })
+
 	@GetMapping
 	public List<Goal> getAll() {
 		return service.getAll();
 	}
 
+	@Operation(summary = "Get a Goal by his or her Id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Goal found", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Goal.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Goal not found", content = @Content) })
+
 	@GetMapping("{idGoal}")
-	public ResponseEntity<Goal> getByIdgoal(@PathVariable Integer idGoal) {
+	public ResponseEntity<?> getByIdgoal(@PathVariable Integer idGoal) {
 		Goal goal = service.getByIdGoal(idGoal);
 		return new ResponseEntity<Goal>(goal, HttpStatus.OK);
 	}
 
 	@PostMapping
-	public void register(@RequestBody Goal goal) {
+	public ResponseEntity<?> register(@RequestBody Goal goal) {
 		service.save(goal);
+		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
 
 	@PutMapping("{idGoal}")
@@ -53,8 +72,9 @@ public class GoalController {
 	}
 
 	@DeleteMapping("{idGoal}")
-	public void delete(@PathVariable Integer idGoal) {
+	public ResponseEntity<?> delete(@PathVariable Integer idGoal) {
 		service.delete(idGoal);
+		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
 	}
 
 }
