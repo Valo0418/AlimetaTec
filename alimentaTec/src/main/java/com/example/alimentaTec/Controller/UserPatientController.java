@@ -1,4 +1,4 @@
-package com.example.alimentaTec.Controller;
+package com.example.alimentaTec.controller;
 
 import java.util.List;
 import java.util.NoSuchElementException;
