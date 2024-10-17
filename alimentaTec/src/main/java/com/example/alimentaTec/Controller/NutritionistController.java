@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.alimentaTec.Model.Nutritionist;
-import com.example.alimentaTec.Service.ServiceNutritionist;
+import com.example.alimentaTec.model.Nutritionist;
+import com.example.alimentaTec.service.ServiceNutritionist;
 
 @RestController
 @RequestMapping("Nutritionists")
