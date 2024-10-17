@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d83051d6bc750fcbc284a0f0e6e39116f3fa3638
 import com.example.alimentaTec.model.UserPatient;
 import com.example.alimentaTec.service.UserPatientService;
 

@@ -5,7 +5,65 @@ create database AlimetaTecDB;
 drop AlimetaTecDB;
 use AlimetaTecDB;
 
-/*creation of the physical activities table*/
+/*Creating a Login table*/
+  CREATE TABLE Login (
+    idUser INT PRIMARY KEY,
+    username VARCHAR(255) UNIQUE,
+    passwordUser VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	);
+    
+/*Creating a Nutritionist table*/
+    CREATE TABLE Nutritionist(
+	idNutritionist int auto_increment,
+	nutritionistName VARCHAR (15) NOT NULL,
+	paternalSurnameN VARCHAR (20) NOT NULL,
+	maternalSurnameN VARCHAR (20) NOT NULL,
+	ageN INT NOT NULL,
+    genderN VARCHAR (20) NOT NULL,
+    passwordNutritionist VARCHAR (50) NOT NULL,
+	mailNutritionist VARCHAR (50) NOT NULL,
+    nutritionistRegistration VARCHAR (100) NOT NULL,
+     idUser INT,
+    CONSTRAINT PRIMARY KEY idNutritionist_PK (idNutritionist),
+    foreign key(iduser) references Login (idUser)
+    );
+    
+/*Creating a Patient table*/
+    CREATE TABLE UserPatient(
+	userPatientId int auto_increment,
+    UserName VARCHAR (15) NOT NULL,
+	paternalSurname VARCHAR (20) NOT NULL,
+	maternalSurname VARCHAR (20) NOT NULL,
+	age INT NOT NULL,
+	gender VARCHAR (20) NOT NULL,
+	height FLOAT NOT NULL,
+	weight float (50) NOT NULL,
+	suffering VARCHAR (50) NOT NULL,
+    idUser INT,
+	CONSTRAINT PRIMARY KEY userPatientId_PK (userPatientId),
+     foreign key(iduser) references Login (idUser)
+	);
+    
+/*Creating a Goals table*/
+CREATE TABLE Goals (
+    idGoal INT AUTO_INCREMENT PRIMARY KEY,
+    descriptionGoal VARCHAR(255),
+    startGoal BOOLEAN,
+    endGoal BOOLEAN,
+    statusGoal VARCHAR(255)
+	);
+    
+/*Creating a saucer table*/
+CREATE TABLE Saucers (
+    idSaucer INT AUTO_INCREMENT PRIMARY KEY,
+    nameSaucer VARCHAR(255),
+    category VARCHAR(255),
+    preparation VARCHAR(255)
+	);
+
+/*Creating a Activity table*/
 create table PhysicalActivity(
 	idActivity INT AUTO_INCREMENT,
     nameActivity VARCHAR(100) NOT NULL,
@@ -13,39 +71,4 @@ create table PhysicalActivity(
     caloriesBurned  int ,
     intensity ENUM('low', 'medium', 'high'),
     primary key idActivity_AF_PK (idActivity)
-);
-TRUNCATE `alimetatecdb`.`physicalactivity`;
-DROP TABLE `alimetatecdb`.`physicalactivity`;
-INSERT INTO PhysicalActivity (nameActivity, duration, caloriesBurned, intensity) VALUES ('Run', '00:30:00', 300, 'medium');
-
-/*creating the journal table*/
-create table Journal(
-	idJournal INT AUTO_INCREMENT,
-    nameJournal VARCHAR(100) NOT NULL,
-    primary key idJournal_AF_PK (Journal)
-);
-
-CREATE TABLE Saucer (
-    idSauser INT AUTO_INCREMENT,
-    nameSaucer VARCHAR(100) NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    preparation varchar(250) NOT NULL,
-    primary key idSauser_S_PK (idSauser)
-);
-
-
-CREATE TABLE Nutriologo(
-	nutriologo_id int auto_increment,
-	nombre VARCHAR (15) NOT NULL,
-	apellidoPaterno VARCHAR (20) NOT NULL,
-	apellidoMaterno VARCHAR (20) NOT NULL,
-	edad INT NOT NULL,
-    genero VARCHAR (20) NOT NULL,
-    contrasenia VARCHAR (50) NOT NULL,
-	correo VARCHAR (50) NOT NULL,
-    matricula VARCHAR (100) NOT NULL,
-    CONSTRAINT PRIMARY KEY nutriologo_id_PK (nutriologo_id)
-);
-
-INSERT INTO actividadfisica (nombre_actividad, duracion, calorias_quemadas, intensidad)
-VALUES ('Correr', '00:30:00', 300, 'media');
+	);

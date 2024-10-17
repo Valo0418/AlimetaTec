@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 import com.example.alimentaTec.model.Nutritionist;
 import com.example.alimentaTec.repository.NutritionistRepository;
 
-import jakarta.transaction.Transactional;
+
 @Service
 @Transactional
 public class NutritionistService {
+
     @Autowired
 	private NutritionistRepository repo;
 

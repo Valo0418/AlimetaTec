@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.alimentaTec.model.UserPatient;
 import com.example.alimentaTec.repository.UserPatientRepository;
-
 import jakarta.transaction.Transactional;
 
 @Service
