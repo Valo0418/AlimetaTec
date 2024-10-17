@@ -1,4 +1,4 @@
-package com.example.alimentaTec.Model;
+package com.example.alimentaTec.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
