@@ -1,4 +1,4 @@
-package com.example.alimentaTec.Controller;
+package com.example.alimentaTec.controller;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.alimentaTec.Model.UserPatient;
-import com.example.alimentaTec.Service.UserPatientService;
+
+import com.example.alimentaTec.model.UserPatient;
+import com.example.alimentaTec.service.UserPatientService;
 
 @RestController
 @RequestMapping("UsersPatient")
