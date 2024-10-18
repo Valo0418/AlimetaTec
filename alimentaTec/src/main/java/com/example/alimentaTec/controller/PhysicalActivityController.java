@@ -18,16 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.alimentaTec.model.PhysicalActivity;
 import com.example.alimentaTec.service.PhysicalActivityService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("PhysicalActivity")
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
-		RequestMethod.PUT })
-
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
+@Tag(name = "Physical Activity", description = "Provides methods for managing Physical Activity")
 public class PhysicalActivityController {
 
 	@Autowired
 	private PhysicalActivityService service;
-
+	
 	@GetMapping
 	public List<PhysicalActivity> getAll() {
 		return service.getAll();
