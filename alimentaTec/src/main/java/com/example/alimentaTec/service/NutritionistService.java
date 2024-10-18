@@ -10,7 +10,7 @@ import com.example.alimentaTec.repository.NutritionistRepository;
 import jakarta.transaction.Transactional;
 @Service
 @Transactional
-public class ServiceNutritionist {
+public class NutritionistService {
     @Autowired
 	private NutritionistRepository repo;
 

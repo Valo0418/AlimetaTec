@@ -18,38 +18,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.alimentaTec.model.Nutritionist;
-import com.example.alimentaTec.service.ServiceNutritionist;
+import com.example.alimentaTec.service.NutritionistService;
 
 @RestController
-@RequestMapping("Nutritionists")
+@RequestMapping("Nutritionist")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class NutritionistController {
 
     @Autowired
-    private ServiceNutritionist ServiceNutritionist;
+    private NutritionistService serviceNutritionist;
 
     @GetMapping
     public List<Nutritionist> getAll() {
-        return ServiceNutritionist.getAll();
+        return serviceNutritionist.getAll();
     }
 
     @GetMapping("{NutritionistId}")
     public ResponseEntity<Nutritionist> getByNutritionistId(@PathVariable Integer NutritionistId) {
-        Nutritionist nutritionist = ServiceNutritionist.getByNutritionistId(NutritionistId);
+        Nutritionist nutritionist = serviceNutritionist.getByNutritionistId(NutritionistId);
         return new ResponseEntity<Nutritionist>(nutritionist, HttpStatus.OK);
     }
 
     @PostMapping
     public void registrar(@RequestBody Nutritionist nutritionist) {
-        ServiceNutritionist.save(nutritionist);
+        serviceNutritionist.save(nutritionist);
     }
 
     @PutMapping("{NutritionistId}")
     public ResponseEntity<?> update(@RequestBody Nutritionist Nutritionist, @PathVariable Integer NutritionistId) {
-        try {
-            Nutritionist auxNutritionist = ServiceNutritionist.getByNutritionistId(NutritionistId);
+        try{    
+        Nutritionist auxNutritionist = serviceNutritionist.getByNutritionistId(NutritionistId);
             Nutritionist.setNutritionistId(auxNutritionist.getNutritionistId());
-            ServiceNutritionist.save(Nutritionist);
+            serviceNutritionist.save(Nutritionist);
             return new ResponseEntity<String>("Updated record", HttpStatus.OK);
         } catch (NoSuchElementException i) {
             return new ResponseEntity<String>("The record with the control number provided is not found in the database", HttpStatus.NOT_FOUND);
@@ -58,7 +58,7 @@ public class NutritionistController {
 
     @DeleteMapping("{NutritionistId}")
     public void delete(@PathVariable Integer IdNutritionist) {
-        ServiceNutritionist.delete(IdNutritionist);
+        serviceNutritionist.delete(IdNutritionist);
     }
 
 }

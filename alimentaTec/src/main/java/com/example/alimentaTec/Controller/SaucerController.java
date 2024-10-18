@@ -52,11 +52,13 @@ public class SaucerController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Saucer.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid Saucer", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Saucer not found", content = @Content) })
+			
 	@GetMapping("{idSauser}")
 	public ResponseEntity<?> getByIdSauser(@PathVariable Integer idSauser) {
 		Saucer saucer = service.getByIdSauser(idSauser);
 		return new ResponseEntity<Saucer>(saucer, HttpStatus.OK);
 	}
+
 
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody Saucer saucer) {
