@@ -1,9 +1,11 @@
 package com.example.alimentaTec.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Entity
 public class Nutritionist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
