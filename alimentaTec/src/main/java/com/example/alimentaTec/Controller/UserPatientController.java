@@ -1,7 +1,6 @@
 package com.example.alimentaTec.controller;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +18,40 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.alimentaTec.model.UserPatient;
 import com.example.alimentaTec.service.UserPatientService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("UsersPatient")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@Tag(name = "User Patient", description = "Various users patient")
+
 public class UserPatientController {
 
     @Autowired
     private UserPatientService userPatientService;
 
+    @Operation(summary = "Get all user patient")
+	@ApiResponse(responseCode = "200", description = "Found patient", content = {
+	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserPatient.class))) })
+
     @GetMapping
     public List<UserPatient> getAll() {
         return userPatientService.getAll();
     }
+
+    
+	@Operation(summary = "Get a Activity by his or her control number")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Activity found", content = {
+			@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid activity", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Activity not found", content = @Content) })
 
     @GetMapping("{userPatientId}")
     public ResponseEntity <UserPatient> getByUserPatientId(@PathVariable Integer userPatientId) {
@@ -39,25 +60,27 @@ public class UserPatientController {
     }
 
     @PostMapping
-    public void registrar(@RequestBody UserPatient userPatient) {
+    public ResponseEntity<?> registrar(@RequestBody UserPatient userPatient) {
         userPatientService.save(userPatient);
+        return new ResponseEntity<String>("Saved record", HttpStatus.OK);
+
     }
 
     @PutMapping("{userPatientId}")
     public ResponseEntity<?> update(@RequestBody UserPatient userPatient, @PathVariable Integer userPatientId) {
-        try {
+    
             UserPatient auxUserPatient = userPatientService.getByUserPatientId(userPatientId);
             userPatient.setUserPatientId(auxUserPatient.getUserPatientId());
             userPatientService.save(userPatient);
             return new ResponseEntity<String>("Updated record", HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<String>("The record with the control number provided is not found in the database", HttpStatus.NOT_FOUND);
-        }
+
     }
 
     @DeleteMapping("{userPatientId}")
-    public void delete(@PathVariable Integer userPatientId) {
+    public ResponseEntity<?>  delete(@PathVariable Integer userPatientId) {
         userPatientService.delete(userPatientId);
+		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
+
     }
 
 }

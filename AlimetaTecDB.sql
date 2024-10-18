@@ -6,7 +6,7 @@ drop AlimetaTecDB;
 use AlimetaTecDB;
 
 /*Creating a Login table*/
-  CREATE TABLE Login (
+CREATE TABLE Login (
     idUser INT PRIMARY KEY,
     username VARCHAR(255) UNIQUE,
     passwordUser VARCHAR(255),
@@ -25,7 +25,7 @@ use AlimetaTecDB;
     passwordNutritionist VARCHAR (50) NOT NULL,
 	mailNutritionist VARCHAR (50) NOT NULL,
     nutritionistRegistration VARCHAR (100) NOT NULL,
-     idUser INT,
+    idUser INT,
     CONSTRAINT PRIMARY KEY idNutritionist_PK (idNutritionist),
     foreign key(iduser) references Login (idUser)
     );
@@ -43,7 +43,7 @@ use AlimetaTecDB;
 	suffering VARCHAR (50) NOT NULL,
     idUser INT,
 	CONSTRAINT PRIMARY KEY userPatientId_PK (userPatientId),
-     foreign key(iduser) references Login (idUser)
+    foreign key(iduser) references Login (idUser)
 	);
     
 /*Creating a Goals table*/

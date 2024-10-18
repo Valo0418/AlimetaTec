@@ -1,4 +1,4 @@
-package com.example.alimentaTec.Controller;
+package com.example.alimentaTec.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+
 @RestController
 @RequestMapping("Goal")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
@@ -40,7 +41,6 @@ public class GoalController {
 	@Operation(summary = "Get all Goal")
 	@ApiResponse(responseCode = "200", description = "Found Goal", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Goal.class))) })
-
 	@GetMapping
 	public List<Goal> getAll() {
 		return service.getAll();

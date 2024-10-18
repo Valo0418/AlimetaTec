@@ -1,4 +1,4 @@
-package com.example.alimentaTec.Controller;
+package com.example.alimentaTec.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,17 +40,19 @@ public class PhysicalActivityController {
 	@Operation(summary = "Get all Activity")
 	@ApiResponse(responseCode = "200", description = "Found Activity", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PhysicalActivity.class))) })
-	@GetMapping
-	public List<PhysicalActivity> getAll() {
-		return service.getAll();
+
+			@GetMapping
+			public List<PhysicalActivity> getAll() {
+		    return service.getAll();
 	}
 
 	@Operation(summary = "Get a Activity by his or her control number")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Activity found", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = PhysicalActivity.class)) }),
+			@Content(mediaType = "application/json", schema = @Schema(implementation = PhysicalActivity.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid activity", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Activity not found", content = @Content) })
+
 	@GetMapping("{idActivity}")
 	public ResponseEntity<?> getByIdActivity(@PathVariable Integer idActivity) {
 		PhysicalActivity physicalActivity = service.getByIdActivity(idActivity);
