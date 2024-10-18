@@ -17,3 +17,16 @@ create table PhysicalActivity(
 TRUNCATE `alimetatecdb`.`physicalactivity`;
 DROP TABLE `alimetatecdb`.`physicalactivity`;
 INSERT INTO PhysicalActivity (nameActivity, duration, caloriesBurned, intensity) VALUES ('Run', '00:30:00', 300, 'medium');
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+CREATE TABLE Journal(
+	idJournal INT AUTO_INCREMENT,
+    idActivity INT,
+    idGloal INT,
+    idUser INT,
+    CONSTRAINT idJournal_PK primary key (idJournal),
+    constraint idActivity_J_FK foreign key (idActivity) references PhysicalActivity (idActivity),
+    constraint idGloal_J_FK foreign key (idGloal) references Goal (idGloal),
+    constraint idUser_J_FK foreign key (idUser) references Login (idUser)
+);
