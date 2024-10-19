@@ -1,12 +1,21 @@
 package com.example.alimentaTec.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class PhysicalActivity {
+    @NotBlank(message = "kjasfklsahdflkshfskdhflsk")
+    @Size (min = 1, max = 500, message = "askjdfksaldhfshfiwuhuh0i230 20 930 293u 023e09 u23")
+    @Column(name = "idActivity")
+    @JsonProperty("idActivity")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idActivity;
