@@ -19,6 +19,10 @@ import com.example.alimentaTec.model.PhysicalActivity;
 import com.example.alimentaTec.service.PhysicalActivityService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -30,6 +34,9 @@ public class PhysicalActivityController {
 	@Autowired
 	private PhysicalActivityService service;
 	
+	@Operation(summary = "Get all Physical Activity")
+	@ApiResponse(responseCode  = "200", description = "Found Physical Activity", content = {
+		@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PhysicalActivity.class)))})
 	@GetMapping
 	public List<PhysicalActivity> getAll() {
 		return service.getAll();
