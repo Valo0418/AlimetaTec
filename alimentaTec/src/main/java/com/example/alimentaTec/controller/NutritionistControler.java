@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.alimentaTec.model.Goal;
-import com.example.alimentaTec.service.GoalService;
+import com.example.alimentaTec.model.Nutritionist;
+import com.example.alimentaTec.service.NutritionistService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -27,55 +27,56 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("Goal")
+@RequestMapping("Nutritionist")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
-@Tag(name = "Goal", description = "Types of goals")
-public class GoalController {
+@Tag(name = "Nutritionist", description = "Types of Nutritionists")
+
+public class NutritionistControler {
+    
 
 	@Autowired
-	private GoalService service;
+	private NutritionistService service;
 
-	@Operation(summary = "Get all Goal")
-	@ApiResponse(responseCode = "200", description = "Found Goal", content = {
-			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Goal.class))) })
+	@Operation(summary = "Get all Nutritionist")
+	@ApiResponse(responseCode = "200", description = "Found Nutritionist", content = {
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Nutritionist.class))) })
 	@GetMapping
-	public List<Goal> getAll() {
+	public List<Nutritionist> getAll() {
 		return service.getAll();
 	}
 
-	@Operation(summary = "Get a Goal by his or her Id")
+	@Operation(summary = "Get a Nutritionist by his or her Id")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Goal found", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Goal.class)) }),
+			@ApiResponse(responseCode = "200", description = "Nutritionist found", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
-			@ApiResponse(responseCode = "404", description = "Goal not found", content = @Content) })
+			@ApiResponse(responseCode = "404", description = "Nutritionist not found", content = @Content) })
 
-	@GetMapping("{idGoal}")
-	public ResponseEntity<?> getByIdgoal(@PathVariable Integer idGoal) {
-		Goal goal = service.getByIdGoal(idGoal);
-		return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+	@GetMapping("{idNutritionist}")
+	public ResponseEntity<?> getByIdNutritionist(@PathVariable Integer idNutritionist) {
+		Nutritionist nutritionist = service.getByIdNutritionist(idNutritionist);
+		return new ResponseEntity<Nutritionist>(nutritionist, HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<?> register(@RequestBody Goal goal) {
-		service.save(goal);
+	public ResponseEntity<?> register(@RequestBody Nutritionist nutritionist) {
+		service.save(nutritionist);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
 
 	@PutMapping("{idGoal}")
-	public ResponseEntity<?> update(@RequestBody Goal goal, @PathVariable Integer idGoal) {
-		Goal auxGoal = service.getByIdGoal(idGoal);
-		goal.setIdGoal(auxGoal.getIdGoal());
-		service.save(goal);
+	public ResponseEntity<?> update(@RequestBody Nutritionist nutritionist, @PathVariable Integer idNutritionist) {
+		Nutritionist auxNutritionist = service.getByIdNutritionist(idNutritionist);
+		nutritionist.setIdNutritionist(auxNutritionist.getIdNutritionist());
+		service.save(nutritionist);
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
 
-	@DeleteMapping("{idGoal}")
-	public ResponseEntity<?> delete(@PathVariable Integer idGoal) {
-		service.delete(idGoal);
+	@DeleteMapping("{idNutritionist}")
+	public ResponseEntity<?> delete(@PathVariable Integer idNutritionist) {
+		service.delete(idNutritionist);
 		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
 	}
-
 }

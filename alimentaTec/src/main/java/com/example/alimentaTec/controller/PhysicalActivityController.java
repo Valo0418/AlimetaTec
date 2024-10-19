@@ -41,15 +41,15 @@ public class PhysicalActivityController {
 	@ApiResponse(responseCode = "200", description = "Found Activity", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PhysicalActivity.class))) })
 
-			@GetMapping
-			public List<PhysicalActivity> getAll() {
-		    return service.getAll();
+	@GetMapping
+	public List<PhysicalActivity> getAll() {
+		return service.getAll();
 	}
 
-	@Operation(summary = "Get a Activity by his or her control number")
+	@Operation(summary = "Get a physical activities by his or her Id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Activity found", content = {
-			@Content(mediaType = "application/json", schema = @Schema(implementation = PhysicalActivity.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = PhysicalActivity.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid activity", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Activity not found", content = @Content) })
 

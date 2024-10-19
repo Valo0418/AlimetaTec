@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.alimentaTec.model.Nutritionist;
 
 @Repository
-public interface NutritionistRepository extends JpaRepository<Nutritionist, Integer> {
-    
+public interface NutritionistRespository extends JpaRepository<Nutritionist, Integer> {
+
 }
