@@ -72,12 +72,5 @@ public class SaucerController {
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
 
-<<<<<<< Updated upstream
-	@DeleteMapping("{idSauser}")
-	public ResponseEntity<?> delete(@PathVariable Integer idSauser) {
-		service.delete(idSauser);
-		return new ResponseEntity<String>("Delete record", HttpStatus.OK);
-	}
-=======
->>>>>>> Stashed changes
+
 }
