@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.alimentaTec.model.Goal;
-import com.example.alimentaTec.model.Saucer;
+
 import com.example.alimentaTec.repository.GoalRepository;
 import jakarta.transaction.Transactional;
 
