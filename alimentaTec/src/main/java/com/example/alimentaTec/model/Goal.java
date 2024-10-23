@@ -10,6 +10,7 @@ public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGoal;
+    private String nameGoal;
     private String descriptionGoal;
     private boolean startGoal;
     private boolean endGoal;
@@ -22,6 +23,14 @@ public class Goal {
 
     public void setIdGoal(int idGoal) {
         this.idGoal = idGoal;
+    }
+
+    public String getNameGoal() {
+        return nameGoal;
+    }
+
+    public void setNameGoal(String nameGoal) {
+        this.nameGoal = nameGoal;
     }
 
     public String getDescriptionGoal() {
@@ -58,6 +67,6 @@ public class Goal {
 
     @Override
     public String toString() {
-        return idGoal + " :: " + descriptionGoal + " :: " + startGoal + " :: " + endGoal + " :: " + statusGoal;
+        return idGoal + " :: " + nameGoal + " :: " + descriptionGoal + " :: " + startGoal + " :: " + endGoal + " :: " + statusGoal;
     }
 }

@@ -23,12 +23,15 @@ public class SaucerService {
 		repo.save(saucer);
 	}
 
-	public Saucer getByIdSauser(Integer idSauser) {
-		return repo.findById(idSauser).get();
+	public Saucer getByIdSaucer(Integer idSaucer) {
+		return repo.findById(idSaucer).get();
 	}
 
-	public void delete(Integer idSauser) {
-		repo.deleteById(idSauser);
+	public void delete(Integer idSaucer) {
+		repo.deleteById(idSaucer);
 	}
-
+	
+	public List<Saucer> buscarPorNombre(String nameSaucer) {
+        return repo.buscarPorNombre(nameSaucer);
+    }
 }

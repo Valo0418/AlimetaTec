@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.alimentaTec.model.Saucer;
@@ -50,27 +51,35 @@ public class SaucerController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Saucer.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid Saucer", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Saucer not found", content = @Content) })
-	@GetMapping("{idSauser}")
-	public ResponseEntity<?> getByIdSauser(@PathVariable Integer idSauser) {
-		Saucer saucer = service.getByIdSauser(idSauser);
+	@GetMapping("/{idSaucer}")
+	public ResponseEntity<?> getByIdSaucer(@PathVariable Integer idSaucer) {
+		Saucer saucer = service.getByIdSaucer(idSaucer);
 		return new ResponseEntity<Saucer>(saucer, HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get a Saucer by his or her name")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Saucer found", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Saucer.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid Saucer", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Saucer not found", content = @Content) })
+			@GetMapping("/{nameSaucer}/name")
+			public List<Saucer> buscarNameSaucer(@PathVariable String nameSaucer) {
+				return service.buscarPorNombre(nameSaucer);
+			}
 
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody Saucer saucer) {
 		service.save(saucer);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
-
 	}
 
-	@PutMapping("{idSauser}")
-	public ResponseEntity<?> update(@RequestBody Saucer saucer, @PathVariable Integer idSauser) {
-		Saucer auxSaucer = service.getByIdSauser(idSauser);
-		saucer.setIdSauser(auxSaucer.getIdSauser());
+	@PutMapping("/{idSaucer}")
+	public ResponseEntity<?> update(@RequestBody Saucer saucer, @PathVariable Integer idSaucer) {
+		Saucer auxSaucer = service.getByIdSaucer(idSaucer);
+		saucer.setIdSaucer(auxSaucer.getIdSaucer());
 		service.save(saucer);
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
-
 
 }

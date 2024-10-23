@@ -4,18 +4,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "Saucer")
 public class Saucer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idSauser;
+    private int idSaucer;
     private String nameSaucer;
     private String category;
     private String preparation;
 
-    public int getIdSauser(){return idSauser;}
-    public void setIdSauser(int idSauser){this.idSauser = idSauser;}
+    public int getIdSaucer(){return idSaucer;}
+    public void setIdSaucer(int idSaucer){this.idSaucer = idSaucer;}
 
     public String getNameSaucer(){return nameSaucer;}
     public void setNameSaucer(String nameSaucer){this.nameSaucer = nameSaucer;}
@@ -28,6 +30,6 @@ public class Saucer {
 
     @Override
     public String toString(){
-        return idSauser + " :: " + nameSaucer + " :: " + category + " :: " + preparation;
+        return idSaucer + " :: " + nameSaucer + " :: " + category + " :: " + preparation;
     }
 }
