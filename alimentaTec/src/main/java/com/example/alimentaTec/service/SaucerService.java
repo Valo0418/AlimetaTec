@@ -25,9 +25,10 @@ public class SaucerService {
 
 	public Saucer getByIdSauser(Integer idSauser) {
 		return repo.findById(idSauser).get();
-	}	
+	}
 
 	public void delete(Integer idSauser) {
 		repo.deleteById(idSauser);
 	}
+
 }

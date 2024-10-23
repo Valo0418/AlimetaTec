@@ -7,5 +7,5 @@ import com.example.alimentaTec.model.Saucer;
 
 @Repository
 public interface SaucerRepository extends JpaRepository<Saucer, Integer> {
-    
+
 }

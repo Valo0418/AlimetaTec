@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +30,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
-
 @Tag(name = "Saucer", description = "Various types of saucers")
 public class SaucerController {
 
@@ -52,7 +50,6 @@ public class SaucerController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Saucer.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid Saucer", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Saucer not found", content = @Content) })
-			
 	@GetMapping("{idSauser}")
 	public ResponseEntity<?> getByIdSauser(@PathVariable Integer idSauser) {
 		Saucer saucer = service.getByIdSauser(idSauser);
@@ -64,7 +61,7 @@ public class SaucerController {
 	public ResponseEntity<?> register(@RequestBody Saucer saucer) {
 		service.save(saucer);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
-	
+
 	}
 
 	@PutMapping("{idSauser}")
@@ -75,9 +72,12 @@ public class SaucerController {
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
 
+<<<<<<< Updated upstream
 	@DeleteMapping("{idSauser}")
 	public ResponseEntity<?> delete(@PathVariable Integer idSauser) {
 		service.delete(idSauser);
 		return new ResponseEntity<String>("Delete record", HttpStatus.OK);
 	}
+=======
+>>>>>>> Stashed changes
 }
