@@ -27,7 +27,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("saucer")
+@RequestMapping("Saucer")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
@@ -79,6 +79,5 @@ public class SaucerController {
 	public ResponseEntity<?> delete(@PathVariable Integer idSauser) {
 		service.delete(idSauser);
 		return new ResponseEntity<String>("Delete record", HttpStatus.OK);
-	
 	}
 }

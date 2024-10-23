@@ -1,17 +1,18 @@
-user = "alimentador"
-password = "6X6[Q&W6pKsw"
+/*Useer = alimentador
+6X6[Q&W6pKsw*/
 
 create database AlimetaTecDB;
 drop AlimetaTecDB;
 use AlimetaTecDB;
 
 /*Creating a Login table*/
-  CREATE TABLE Login (
-    idUser INT PRIMARY KEY,
+CREATE TABLE Login (
+    idUser INT auto_increment,
     username VARCHAR(255) UNIQUE,
     passwordUser VARCHAR(255),
     email VARCHAR(255) UNIQUE,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT PRIMARY KEY idUser_PK (idUser)
 	);
     
 /*Creating a Nutritionist table*/
@@ -25,9 +26,8 @@ use AlimetaTecDB;
     passwordNutritionist VARCHAR (50) NOT NULL,
 	mailNutritionist VARCHAR (50) NOT NULL,
     nutritionistRegistration VARCHAR (100) NOT NULL,
-     idUser INT,
-    CONSTRAINT PRIMARY KEY idNutritionist_PK (idNutritionist),
-    foreign key(iduser) references Login (idUser)
+    idUser INT,
+    CONSTRAINT PRIMARY KEY idNutritionist_PK (idNutritionist)
     );
     
 /*Creating a Patient table*/
@@ -42,25 +42,27 @@ use AlimetaTecDB;
 	weight float (50) NOT NULL,
 	suffering VARCHAR (50) NOT NULL,
     idUser INT,
-	CONSTRAINT PRIMARY KEY userPatientId_PK (userPatientId),
-     foreign key(iduser) references Login (idUser)
+	CONSTRAINT PRIMARY KEY userPatientId_PK (userPatientId)
+    /*foreign key(iduser) references Login (idUser) descomentar*/
 	);
     
 /*Creating a Goals table*/
-CREATE TABLE Goals (
-    idGoal INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Goal (
+    idGoal INT auto_increment,
     descriptionGoal VARCHAR(255),
     startGoal BOOLEAN,
     endGoal BOOLEAN,
-    statusGoal VARCHAR(255)
+    statusGoal VARCHAR(255),
+    CONSTRAINT PRIMARY KEY idGoal_PK(idGoal)
 	);
     
 /*Creating a saucer table*/
-CREATE TABLE Saucers (
-    idSaucer INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Saucer (
+    idSaucer INT AUTO_INCREMENT,
     nameSaucer VARCHAR(255),
     category VARCHAR(255),
-    preparation VARCHAR(255)
+    preparation VARCHAR(255),
+    CONSTRAINT PRIMARY KEY idSaucer_PK (idSaucer)
 	);
 
 /*Creating a Activity table*/
