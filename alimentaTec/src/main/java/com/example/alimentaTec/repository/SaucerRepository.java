@@ -11,11 +11,8 @@ import com.example.alimentaTec.model.Saucer;
 
 @Repository
 public interface SaucerRepository extends JpaRepository<Saucer, Integer> {
-
-    // @Query(value = "SELECT * FROM name_saucer WHERE name_saucer LIKE %:nameSaucer%", nativeQuery = true)
-    // List<Saucer> buscarPorNombre(@Param("nameSaucer") String nameSaucer);
-
+     
     @Query("SELECT s FROM Saucer s WHERE s.nameSaucer = :nameSaucer")
-    List<Saucer> buscarPorNombre(@Param("nameSaucer") String nameSaucer);
+    List<Saucer> searchbyName(@Param("nameSaucer") String nameSaucer);
            
 }
