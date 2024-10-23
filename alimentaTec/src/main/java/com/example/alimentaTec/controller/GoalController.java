@@ -59,12 +59,12 @@ public class GoalController {
 		return new ResponseEntity<Goal>(goal, HttpStatus.OK);
 	}
 
-	@Operation(summary = "Get a Saucer by his or her name")
+	@Operation(summary = "Get a Goal by his or her name")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Saucer found", content = {
+			@ApiResponse(responseCode = "200", description = "Goal found", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Saucer.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid Saucer", content = @Content),
-			@ApiResponse(responseCode = "404", description = "Saucer not found", content = @Content) })
+			@ApiResponse(responseCode = "400", description = "Invalid Goal", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Goal not found", content = @Content) })
 	@GetMapping("/{nameGoal}/name")
 	public List<Goal> buscarNameSaucer(@PathVariable String nameGoal) {
 		return service.buscarPorNombre(nameGoal);
