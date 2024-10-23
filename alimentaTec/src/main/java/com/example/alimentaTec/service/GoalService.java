@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.alimentaTec.model.Goal;
+
 import com.example.alimentaTec.repository.GoalRepository;
 import jakarta.transaction.Transactional;
 
@@ -30,4 +31,8 @@ public class GoalService {
 	public void delete(Integer idGoal) {
 		repo.deleteById(idGoal);
 	}
+
+	public List<Goal> buscarPorNombre(String nameGoal) {
+        return repo.buscarPorNombre(nameGoal);
+    }
 }

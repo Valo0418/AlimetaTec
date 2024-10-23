@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.alimentaTec.model.Goal;
-import com.example.alimentaTec.model.Saucer;
-import com.example.alimentaTec.service.GoalService;
+import com.example.alimentaTec.model.Login;
+import com.example.alimentaTec.service.LoginService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -27,60 +26,50 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("Goal")
+@RequestMapping("login")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
-@Tag(name = "Goal", description = "Types of goals")
-public class GoalController {
+@Tag(name = "Login", description = "Types of logins")
+public class LoginController {
 
 	@Autowired
-	private GoalService service;
+	private LoginService service;
 
 	@Operation(summary = "Get all Goal")
 	@ApiResponse(responseCode = "200", description = "Found Goal", content = {
-			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Goal.class))) })
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Login.class))) })
+
 	@GetMapping
-	public List<Goal> getAll() {
+	public List<Login> getAll() {
 		return service.getAll();
 	}
 
 	@Operation(summary = "Get a Goal by his or her Id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Goal found", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Goal.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Login.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Goal not found", content = @Content) })
 
-	@GetMapping("{idGoal}")
-	public ResponseEntity<?> getByIdgoal(@PathVariable Integer idGoal) {
-		Goal goal = service.getByIdGoal(idGoal);
-		return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+	@GetMapping("{idUser}")
+	public ResponseEntity<?> getByIdlogin(@PathVariable Integer idUser) {
+		Login login = service.getByIdLogin(idUser);
+		return new ResponseEntity<Login>(login, HttpStatus.OK);
 	}
 
-	@Operation(summary = "Get a Saucer by his or her name")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Saucer found", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Saucer.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid Saucer", content = @Content),
-			@ApiResponse(responseCode = "404", description = "Saucer not found", content = @Content) })
-	@GetMapping("/{nameGoal}/name")
-	public List<Goal> buscarNameSaucer(@PathVariable String nameGoal) {
-		return service.buscarPorNombre(nameGoal);
-	}
 
 	@PostMapping
-	public ResponseEntity<?> register(@RequestBody Goal goal) {
-		service.save(goal);
+	public ResponseEntity<?> register(@RequestBody Login login) {
+		service.save(login);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
 
-	@PutMapping("{idGoal}")
-	public ResponseEntity<?> update(@RequestBody Goal goal, @PathVariable Integer idGoal) {
-		Goal auxGoal = service.getByIdGoal(idGoal);
-		goal.setIdGoal(auxGoal.getIdGoal());
-		service.save(goal);
+	@PutMapping("{idUser}")
+	public ResponseEntity<?> update(@RequestBody Login login, @PathVariable Integer idUser) {
+		Login auxLogin = service.getByIdLogin(idUser);
+		login.setIdUser(auxLogin.getIdUser());
+		service.save(login);
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
-
 }

@@ -1,18 +1,40 @@
 package com.example.alimentaTec.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+
 @Entity
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idGoal")
+    @JsonProperty("idGoal")
     private int idGoal;
+
+    @Column(name = "nameGoal")
+    @JsonProperty("nameGoal")
+    private String nameGoal;
+
+    @Column(name = "descriptionGoal")
+    @JsonProperty("descriptionGoal")
     private String descriptionGoal;
+
+    @Column(name = "startGoal")
+    @JsonProperty("startGoal")
     private boolean startGoal;
+
+    @Column(name = "endGoal")
+    @JsonProperty("endGoal")
     private boolean endGoal;
+
+    @Column(name = "statusGoal")
+    @JsonProperty("statusGoal")
     private String statusGoal;
 
     // Getters and Setters
@@ -22,6 +44,14 @@ public class Goal {
 
     public void setIdGoal(int idGoal) {
         this.idGoal = idGoal;
+    }
+
+    public String getNameGoal() {
+        return nameGoal;
+    }
+
+    public void setNameGoal(String nameGoal) {
+        this.nameGoal = nameGoal;
     }
 
     public String getDescriptionGoal() {
@@ -56,8 +86,4 @@ public class Goal {
         this.statusGoal = statusGoal;
     }
 
-    @Override
-    public String toString() {
-        return idGoal + " :: " + descriptionGoal + " :: " + startGoal + " :: " + endGoal + " :: " + statusGoal;
-    }
 }
