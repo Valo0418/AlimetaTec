@@ -77,9 +77,10 @@ public class Nutritionist {
     public String getNutritionistRegistration(){return nutritionistRegistration;}
     public void setNutritionistRegistration(String nutritionistRegistration){this.nutritionistRegistration = nutritionistRegistration;}
 
-    //@Override
+   
+   // @Override
     //public String toString(){
-    //    return idNutritionist + " :: " + nutritionistName + " :: " + paternalSurnameN + " :: " + maternalSurnameN + " :: " + ageN + " :: " +genderN + " :: " + passwordNutritionist + " :: " + mailNutritionist + " :: " + nutritionistRegistration;
+    //return idNutritionist + " :: " + nutritionistName + " :: " + paternalSurnameN + " :: " + maternalSurnameN + " :: " + ageN + " :: " +genderN + " :: " + passwordNutritionist + " :: " + mailNutritionist + " :: " + nutritionistRegistration;
     //}
 
 }

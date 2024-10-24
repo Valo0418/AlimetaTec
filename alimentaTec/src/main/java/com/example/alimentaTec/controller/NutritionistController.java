@@ -34,10 +34,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Nutritionist", description = "Types of Nutritionists")
 
-public class NutritionistControler {
+public class NutritionistController {
 	@Autowired
 
-	private NutritionistService service;
+	NutritionistService service;
 
 	@Operation(summary = "Get all Nutritionist")
 	@ApiResponse(responseCode = "200", description = "Found Nutritionist", content = {
@@ -46,13 +46,6 @@ public class NutritionistControler {
 	public List<Nutritionist> getAll() {
 		return service.getAll();
 	}
-
-	@Operation(summary = "Get a Nutritionist by his or her Id")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Nutritionist found", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
-			@ApiResponse(responseCode = "404", description = "Nutritionist not found", content = @Content) })
 
 	@GetMapping("{idNutritionist}")
 	public ResponseEntity<?> getByIdNutritionist(@PathVariable Integer idNutritionist) {
@@ -66,7 +59,7 @@ public class NutritionistControler {
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
 
-	@PutMapping("{idGoal}")
+	@PutMapping("{idNutritionist}")
 	public ResponseEntity<?> update(@RequestBody Nutritionist nutritionist, @PathVariable Integer idNutritionist) {
 		Nutritionist auxNutritionist = service.getByIdNutritionist(idNutritionist);
 		nutritionist.setIdNutritionist(auxNutritionist.getIdNutritionist());
@@ -80,8 +73,16 @@ public class NutritionistControler {
 		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
 	}
 
-	//@GetMapping ("/{userName}/name")
-	//public List<Nutritionist> searchbyNameNutritionist (@PathVariable String userName){
-	//	return service.searchbyName(userName);
-	//}
+	@Operation(summary = "Get a Nutritionist by his or her name ")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Nutritionist found", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Nutritionist not found", content = @Content) })
+
+
+	@GetMapping ("/{nutritionistName}/name")
+	public List<Nutritionist> searchbyNutritionistName (@PathVariable String nutritionistName){
+	return service.searchbyNutritionistName(nutritionistName);
+	}
 }
