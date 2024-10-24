@@ -1,6 +1,7 @@
 package com.example.alimentaTec.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +35,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Nutritionist", description = "Types of Nutritionists")
 
 public class NutritionistControler {
-    
-
 	@Autowired
+
 	private NutritionistService service;
 
 	@Operation(summary = "Get all Nutritionist")
@@ -79,4 +79,9 @@ public class NutritionistControler {
 		service.delete(idNutritionist);
 		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
 	}
+
+	//@GetMapping ("/{userName}/name")
+	//public List<Nutritionist> searchbyNameNutritionist (@PathVariable String userName){
+	//	return service.searchbyName(userName);
+	//}
 }

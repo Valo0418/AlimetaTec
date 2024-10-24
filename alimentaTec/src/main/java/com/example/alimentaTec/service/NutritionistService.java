@@ -30,4 +30,8 @@ public class NutritionistService {
     public void delete(Integer idNutritionist) {
         repo.deleteById(idNutritionist);
     }
+    
+    //public List<Nutritionist> searchbyName(String userName){
+    //    return repo.searchbyName(userName);
+    //}
 }

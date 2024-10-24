@@ -26,6 +26,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+
 @RestController
 @RequestMapping("UsersPatient")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
@@ -36,7 +37,7 @@ public class UserPatientController {
     @Autowired
     private UserPatientService userPatientService;
 
-    @Operation(summary = "Get all user patient")
+    @Operation(summary = "Gnameuser patient")
 	@ApiResponse(responseCode = "200", description = "Found patient", content = {
 	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserPatient.class))) })
 
@@ -48,10 +49,10 @@ public class UserPatientController {
     
 	@Operation(summary = "Get a Activity by his or her control number")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Activity found", content = {
+			@ApiResponse(responseCode = "200", description = "Patient found", content = {
 			@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid activity", content = @Content),
-			@ApiResponse(responseCode = "404", description = "Activity not found", content = @Content) })
+			@ApiResponse(responseCode = "400", description = "Invalid Patient", content = @Content),
+			@ApiResponse(responseCode = "404", description = "User Patient not found", content = @Content) })
 
     @GetMapping("{userPatientId}")
     public ResponseEntity <UserPatient> getByUserPatientId(@PathVariable Integer userPatientId) {
