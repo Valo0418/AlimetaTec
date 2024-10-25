@@ -2,11 +2,14 @@ package com.example.alimentaTec.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -49,6 +52,11 @@ public class UserPatient {
     @Column(name ="suffering")
     @JsonProperty("suffering")
     private String suffering;
+
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name =" idUser", referencedColumnName=" idUser")
+    @JsonProperty(" idUser")
+    private Login login;
 
     public Integer getUserPatientId() {
         return userPatientId;
@@ -122,6 +130,13 @@ public class UserPatient {
         this.suffering = suffering;
     }
 
+    public Login getLogin(){
+        return login;
+    }
+
+    public void setLogin(Login login){
+        this.login = login;
+    }
     //@Override
     //public String toString() {
     //    return  + userPatientId + "::" + userName + "::" + paternalSurname + "::"

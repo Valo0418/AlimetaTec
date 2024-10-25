@@ -2,11 +2,14 @@ package com.example.alimentaTec.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -50,6 +53,11 @@ public class Nutritionist {
     @JsonProperty("nutritionistRegistration")
     private String nutritionistRegistration;
 
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name =" idUser", referencedColumnName=" idUser")
+    @JsonProperty(" idUser")
+    private Login login;
+
     public int getIdNutritionist(){return idNutritionist;}
     public void setIdNutritionist(int idNutritionist){this.idNutritionist = idNutritionist;}
 
@@ -77,7 +85,13 @@ public class Nutritionist {
     public String getNutritionistRegistration(){return nutritionistRegistration;}
     public void setNutritionistRegistration(String nutritionistRegistration){this.nutritionistRegistration = nutritionistRegistration;}
 
-   
+    public Login getLogin(){
+        return login;
+    }
+
+    public void setLogin(Login login){
+        this.login = login;
+    }
    // @Override
     //public String toString(){
     //return idNutritionist + " :: " + nutritionistName + " :: " + paternalSurnameN + " :: " + maternalSurnameN + " :: " + ageN + " :: " +genderN + " :: " + passwordNutritionist + " :: " + mailNutritionist + " :: " + nutritionistRegistration;
