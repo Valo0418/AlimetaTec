@@ -1,5 +1,5 @@
-user = "alimentador"
-password = "6X6[Q&W6pKsw"
+/*Useer = alimentador
+6X6[Q&W6pKsw*/
 
 create database AlimetaTecDB;
 drop AlimetaTecDB;
