@@ -36,8 +36,8 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 
-	@Operation(summary = "Get all Goal")
-	@ApiResponse(responseCode = "200", description = "Found Goal", content = {
+	@Operation(summary = "Get all Login")
+	@ApiResponse(responseCode = "200", description = "Found Login", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Login.class))) })
 
 	@GetMapping
@@ -45,12 +45,12 @@ public class LoginController {
 		return service.getAll();
 	}
 
-	@Operation(summary = "Get a Goal by his or her Id")
+	@Operation(summary = "Get a Login by his or her Id")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Goal found", content = {
+			@ApiResponse(responseCode = "200", description = "Login found", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Login.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
-			@ApiResponse(responseCode = "404", description = "Goal not found", content = @Content) })
+			@ApiResponse(responseCode = "400", description = "Invalid Id supplied", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Login not found", content = @Content) })
 
 	@GetMapping("{idUser}")
 	public ResponseEntity<?> getByIdlogin(@PathVariable Integer idUser) {
