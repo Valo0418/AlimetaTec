@@ -74,3 +74,13 @@ create table PhysicalActivity(
     intensity ENUM('low', 'medium', 'high'),
     primary key idActivity_AF_PK (idActivity)
 	);
+
+CREATE TABLE Journal(
+	idJournal INT AUTO_INCREMENT,
+    idSaucer int,
+	idActivity int,
+	idGoal int, 
+	idUser int,
+    CONSTRAINT idJournal_PK primary key(idJournal),
+    constraint idActivity_J_FK foreign key (idActivity) references PhysicalActivity(idActivity)
+);
