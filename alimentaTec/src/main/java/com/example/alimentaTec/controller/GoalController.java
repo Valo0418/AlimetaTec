@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.alimentaTec.model.Goal;
-import com.example.alimentaTec.model.Saucer;
 import com.example.alimentaTec.service.GoalService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -62,7 +61,7 @@ public class GoalController {
 	@Operation(summary = "Get a Goal by his or her name")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Goal found", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Saucer.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Goal.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid Goal", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Goal not found", content = @Content) })
 	@GetMapping("/{nameGoal}/name")

@@ -76,6 +76,7 @@ public class SaucerController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Saucer.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid Saucer", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Saucer not found", content = @Content) })
+			
 	@GetMapping("/{nameSaucer}/name")
 	public List<Saucer> searchbyNameSaucer(@PathVariable String nameSaucer) {
 		return service.searchbyName(nameSaucer);
