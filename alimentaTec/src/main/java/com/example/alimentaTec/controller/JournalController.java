@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.alimentaTec.service.JournalService;
@@ -36,11 +37,23 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class JournalController {
 	@Autowired
 	private JournalService service;
+	
+	@Operation(summary = "Get all accounts with pagination")
+	@GetMapping(value = "pagination", params = { "page", "size" })
+	public List<Journal> getAllPaginated(@RequestParam(value = "page", defaultValue = "0", required = false) int 
+	page,
+	
+	@RequestParam(value = "size", defaultValue = "10", required = false) int pageSize) {
+		List<Journal> saucer = service.getAll(page, pageSize);
+		return saucer;
+	}
+
 
 	@Operation(summary = "Get all Journal")
 	@ApiResponse(responseCode = "200", description = "Found Journal", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Journal.class))) })
 
+	
 	@GetMapping
 	public List<Journal> getAll() {
 		return service.getAll();
