@@ -62,19 +62,14 @@ public class JournalController {
 	@Operation(summary = "Get a Journal by his or her Id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Journal found", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = PhysicalActivity.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Journal.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid Journal", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Journal not found", content = @Content) })
 
-	@GetMapping("{idActivity}")
-	/*
+	@GetMapping("{idJournal}")
 	public ResponseEntity<?> getByIdActivity(@PathVariable Integer idJournal) {
 		Journal journal = service.getIdJournal(idJournal);
 		return new ResponseEntity<Journal>(journal, HttpStatus.OK);
-	}
-	 */
-	public ResponseEntity<Journal> getById(@PathVariable Integer idJournal){
-		return new ResponseEntity<>(service.getIdJournal(idJournal),HttpStatus.OK);
 	}
 
 	@PostMapping

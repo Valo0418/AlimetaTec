@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,46 +21,42 @@ public class Journal {
     @JsonProperty("idJournal")
     private Integer idJournal;
 
-    //@NotBlank(message = "The content must not be null and must contain at least one non-whitespace character")
-    //@Size(min = 1, max = 500, message = "The content must be at most 500 characters, and has at least one character")
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idSaucer", referencedColumnName = "idSaucer")
-    @JsonProperty("idSaucer")
+    @JsonProperty("sauser")
     private Saucer saucer;
 
-    //@Column(name = "idSaucer")
-    //@JsonProperty("idSaucer")
-    //private Integer idSaucer;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idActivity", referencedColumnName = "idActivity")
-    @JsonProperty("idActivity")
+    @JsonProperty("physicalActivity")
     private PhysicalActivity physicalActivity;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idGoal", referencedColumnName = "idGoal")
-    @JsonProperty("idGoal")
+    @JsonProperty("goal")
     private Goal goal;
 
-    //@Column(name = "idGoal")
-    //@JsonProperty("idGoal")
-    //private Integer idGoal;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")
-    @JsonProperty("idUser")
+    @JsonProperty("login")
     private Login login;
 
-    //@Column(name = "idUser")
-    //@JsonProperty("idUser")
-    //private Integer idUser;
+    public Journal(){
+    }
+
+    public Journal(Integer idJournal, Saucer saucer, PhysicalActivity physicalActivity, Goal goal, Login login){
+        this.idJournal = idJournal;
+        this.saucer = saucer;
+        this.physicalActivity  = physicalActivity;
+        this.goal = goal;
+        this.login = login;
+    }
 
     public Integer getIdJournal() {return idJournal;}
     public void setIdJournal(Integer idJournal) {this.idJournal = idJournal;}
 
     public Saucer getSaucer(){return saucer;}
-    public void setSauser(Saucer saucer){this.saucer = saucer;}
+    public void setSaucer(Saucer saucer){this.saucer = saucer;}
 
     public PhysicalActivity getPhysicalActivity() {return physicalActivity;}
     public void setPhysicalActivity(PhysicalActivity physicalActivity) {this.physicalActivity = physicalActivity;}
