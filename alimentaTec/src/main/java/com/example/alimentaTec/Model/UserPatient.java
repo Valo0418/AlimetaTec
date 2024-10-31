@@ -1,32 +1,68 @@
 package com.example.alimentaTec.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "userpatient")
 public class UserPatient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userPatientId;
+    @Column(name ="userPatientId")
+    @JsonProperty("userPatientId")
+    private Integer userPatientId;
+
+    @Column(name ="userName")
+    @JsonProperty("userName")
     private String userName;
+
+    @Column(name ="paternalSurname")
+    @JsonProperty("paternalSurname")
     private String paternalSurname;
+
+    @Column(name ="maternalSurname")
+    @JsonProperty("maternalSurname")
     private String maternalSurname;
+
+    @Column(name ="age")
+    @JsonProperty("age")
     private int age;
+
+    @Column(name ="gender")
+    @JsonProperty("gender")
     private String gender;
+
+    @Column(name ="height")
+    @JsonProperty("height")
     private float height;
-    private String userPassword;
-    private String mail;
+
+    @Column(name ="weight")
+    @JsonProperty("weight")
     private float weight;
+
+    @Column(name ="suffering")
+    @JsonProperty("suffering")
     private String suffering;
 
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name =" idUser", referencedColumnName=" idUser")
+    @JsonProperty(" idUser")
+    private Login login;
 
-    public int getUserPatientId() {
+    public Integer getUserPatientId() {
         return userPatientId;
     }
 
-    public void setUserPatientId(int userPatientId) {
+    public void setUserPatientId(Integer userPatientId) {
         this.userPatientId = userPatientId;
     }
 
@@ -78,22 +114,6 @@ public class UserPatient {
         this.height = height;
     }
 
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     public float getWeight() {
         return weight;
     }
@@ -110,10 +130,17 @@ public class UserPatient {
         this.suffering = suffering;
     }
 
-    @Override
-    public String toString() {
-        return  + userPatientId + "::" + userName + "::" + paternalSurname + "::"
-                + maternalSurname + "::" + age + "::" + gender + "::" + height + "::"
-                + userPassword + "::" + mail + "::" + weight + "::" + suffering + "::";
+    public Login getLogin(){
+        return login;
     }
+
+    public void setLogin(Login login){
+        this.login = login;
+    }
+    //@Override
+    //public String toString() {
+    //    return  + userPatientId + "::" + userName + "::" + paternalSurname + "::"
+    //            + maternalSurname + "::" + age + "::" + gender + "::" + height + "::"
+    //            + userPassword + "::" + mail + "::" + weight + "::" + suffering + "::";
+    //}
 }
