@@ -37,7 +37,7 @@ public class PhysicalActivityController {
 	@Autowired
 	private PhysicalActivityService service;
 
-	@Operation(summary = "Get all Activity")
+	@Operation(summary = "Get all physical activities")
 	@ApiResponse(responseCode = "200", description = "Found Activity", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PhysicalActivity.class))) })
 
@@ -59,12 +59,14 @@ public class PhysicalActivityController {
 		return new ResponseEntity<PhysicalActivity>(physicalActivity, HttpStatus.OK);
 	}
 
+	@Operation(summary = "Create a physical activity")
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody PhysicalActivity physicalActivity) {
 		service.save(physicalActivity);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
 
+	@Operation(summary = "Update a physical activity")
 	@PutMapping("{idActivity}")
 	public ResponseEntity<?> update(@RequestBody PhysicalActivity physicalActivity, @PathVariable Integer idActivity) {
 
@@ -74,6 +76,7 @@ public class PhysicalActivityController {
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
 
+	@Operation(summary = "Delete a physical activity")
 	@DeleteMapping("{idActivity}")
 	public ResponseEntity<?> delete(@PathVariable Integer idActivity) {
 		service.delete(idActivity);
