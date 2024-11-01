@@ -36,21 +36,21 @@ public class UserPatientControllerTest {
 
     @Test
     public void getAllTest() throws Exception {
-        mvc.perform(get("/UsersPatient").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/userPatients").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(greaterThan(0))));
     }
 
     @Test
     public void getByIdTest() throws Exception {
-        mvc.perform(get("/UsersPatient/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/userPatients/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.userPatientId", is(2)));
     }
 
     @Test
     public void getByIdNotFoundTest() throws Exception {
-        mvc.perform(get("/UsersPatient/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/userPatients/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(containsString("The requested item is not registered")));
     }
