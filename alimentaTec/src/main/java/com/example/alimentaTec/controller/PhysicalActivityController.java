@@ -27,11 +27,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("PhysicalActivity")
+@RequestMapping("physicalActivities")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
-@Tag(name = "Activity", description = "Various physical activities")
+@Tag(name = "Physical Activities", description = "Various physical activities")
 public class PhysicalActivityController {
 
 	@Autowired
@@ -59,14 +59,14 @@ public class PhysicalActivityController {
 		return new ResponseEntity<PhysicalActivity>(physicalActivity, HttpStatus.OK);
 	}
 
-	@Operation(summary = "Create a physical activity")
+	@Operation(summary = "Create a physical activities")
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody PhysicalActivity physicalActivity) {
 		service.save(physicalActivity);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
 
-	@Operation(summary = "Update a physical activity")
+	@Operation(summary = "Update a physical activities")
 	@PutMapping("{idActivity}")
 	public ResponseEntity<?> update(@RequestBody PhysicalActivity physicalActivity, @PathVariable Integer idActivity) {
 
@@ -76,7 +76,7 @@ public class PhysicalActivityController {
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
 
-	@Operation(summary = "Delete a physical activity")
+	@Operation(summary = "Delete a physical activities")
 	@DeleteMapping("{idActivity}")
 	public ResponseEntity<?> delete(@PathVariable Integer idActivity) {
 		service.delete(idActivity);

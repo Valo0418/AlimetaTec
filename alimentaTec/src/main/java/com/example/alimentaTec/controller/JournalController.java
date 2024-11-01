@@ -26,11 +26,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("Journal")
+@RequestMapping("journals")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
-@Tag(name = "Journal", description = "Various Journal")
+@Tag(name = "Journals", description = "Various Journal")
 public class JournalController {
 	@Autowired
 	private JournalService service;

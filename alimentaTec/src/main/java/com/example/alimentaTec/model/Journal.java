@@ -2,7 +2,6 @@ package com.example.alimentaTec.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,23 +20,23 @@ public class Journal {
     @JsonProperty("idJournal")
     private Integer idJournal;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idSaucer", referencedColumnName = "idSaucer")
+    @ManyToOne
+    @JoinColumn(name = "idSaucer", nullable = false)
     @JsonProperty("saucer")
     private Saucer saucer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idActivity", referencedColumnName = "idActivity")
+    @ManyToOne
+    @JoinColumn(name = "idActivity", nullable = false)
     @JsonProperty("physicalActivity")
     private PhysicalActivity physicalActivity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idGoal", referencedColumnName = "idGoal")
+    @ManyToOne
+    @JoinColumn(name = "idGoal", nullable = false)
     @JsonProperty("goal")
     private Goal goal;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idUser", referencedColumnName = "idUser")
+    @ManyToOne
+    @JoinColumn(name = "idUser", nullable = false)
     @JsonProperty("login")
     private Login login;
 
