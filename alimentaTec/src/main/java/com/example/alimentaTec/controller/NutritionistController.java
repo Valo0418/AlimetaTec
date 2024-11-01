@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("Nutritionist")
+@RequestMapping("nutritionist")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
@@ -47,18 +47,34 @@ public class NutritionistController {
 		return service.getAll();
 	}
 
+	@Operation(summary = "Get a Nutritionist by his or her id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Nutritionist found", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Nutritionist not found", content = @Content) })
 	@GetMapping("{idNutritionist}")
 	public ResponseEntity<?> getByIdNutritionist(@PathVariable Integer idNutritionist) {
 		Nutritionist nutritionist = service.getByIdNutritionist(idNutritionist);
 		return new ResponseEntity<Nutritionist>(nutritionist, HttpStatus.OK);
 	}
 
+	@Operation(summary = "Register a Nutritionist")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Nutritionist registered", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody Nutritionist nutritionist) {
 		service.save(nutritionist);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
-
+	
+	@Operation(summary = "Update a Nutritionist")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Nutritionist updated", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
 	@PutMapping("{idNutritionist}")
 	public ResponseEntity<?> update(@RequestBody Nutritionist nutritionist, @PathVariable Integer idNutritionist) {
 		Nutritionist auxNutritionist = service.getByIdNutritionist(idNutritionist);
@@ -66,7 +82,11 @@ public class NutritionistController {
 		service.save(nutritionist);
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
 	}
-
+	@Operation(summary = "Delete a Nutritionist")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Nutritionist deleted", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
 	@DeleteMapping("{idNutritionist}")
 	public ResponseEntity<?> delete(@PathVariable Integer idNutritionist) {
 		service.delete(idNutritionist);
@@ -79,7 +99,6 @@ public class NutritionistController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Nutritionist not found", content = @Content) })
-
 
 	@GetMapping ("/{nutritionistName}/name")
 	public List<Nutritionist> searchbyNutritionistName (@PathVariable String nutritionistName){

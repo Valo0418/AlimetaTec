@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.alimentaTec.model.Goal;
 import com.example.alimentaTec.model.Saucer;
 import com.example.alimentaTec.service.SaucerService;
 

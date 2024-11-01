@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("login")
+@RequestMapping("logins")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
@@ -58,13 +58,22 @@ public class LoginController {
 		return new ResponseEntity<Login>(login, HttpStatus.OK);
 	}
 
-
+	@Operation(summary = "Register a Login")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Login registered", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Login.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid Login", content = @Content) })
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody Login login) {
 		service.save(login);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
 
+	@Operation(summary = "Update a Login")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Login updated", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Login.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid Login", content = @Content) })
 	@PutMapping("{idUser}")
 	public ResponseEntity<?> update(@RequestBody Login login, @PathVariable Integer idUser) {
 		Login auxLogin = service.getByIdLogin(idUser);

@@ -46,25 +46,23 @@ INSERT INTO Login (username, passwordUser, email) VALUES
 	maternalSurnameN VARCHAR (20) NOT NULL,
 	ageN INT NOT NULL,
     genderN VARCHAR (20) NOT NULL,
-    passwordNutritionist VARCHAR (50) NOT NULL,
-	mailNutritionist VARCHAR (50) NOT NULL,
     nutritionistRegistration VARCHAR (100) NOT NULL,
     idUser INT,
     CONSTRAINT PRIMARY KEY idNutritionist_PK (idNutritionist), 
     constraint idUser_N_FK foreign key (idUser) references Login (idUser)
     );
 /*Inserting data into the Nutritionist table*/
-INSERT INTO Nutritionist (nutritionistName, paternalSurnameN, maternalSurnameN, ageN, genderN, passwordNutritionist, mailNutritionist, nutritionistRegistration,idUser) VALUES
-    ('Ana', 'Martínez', 'García', 32, 'Femenino', 'nutriAna2024', 'ana.martinez@nutricion.com', 'NUT-2024-001', 1),
-    ('Carlos', 'Rodríguez', 'López', 45, 'Masculino', 'carlosNutri123', 'carlos.rodriguez@nutricion.com', 'NUT-2024-002', 2),
-    ('María', 'Sánchez', 'Torres', 29, 'Femenino', 'mariaSan24', 'maria.sanchez@nutricion.com', 'NUT-2024-003', 3),
-    ('José', 'Hernández', 'Ruiz', 38, 'Masculino', 'joseHer38', 'jose.hernandez@nutricion.com', 'NUT-2024-004', 4),
-    ('Laura', 'González', 'Flores', 35, 'Femenino', 'lauraGF35', 'laura.gonzalez@nutricion.com', 'NUT-2024-005', 5),
-    ('Miguel', 'Pérez', 'Castro', 41, 'Masculino', 'miguelPC41', 'miguel.perez@nutricion.com', 'NUT-2024-006', 6),
-    ('Sofia', 'Ramírez', 'Morales', 33, 'Femenino', 'sofiRM33', 'sofia.ramirez@nutricion.com', 'NUT-2024-007', 7),
-    ('Daniel', 'Torres', 'Vargas', 37, 'Masculino', 'danielTV37', 'daniel.torres@nutricion.com', 'NUT-2024-008', 8),
-    ('Carmen', 'López', 'Mendoza', 31, 'Femenino', 'carmenLM31', 'carmen.lopez@nutricion.com', 'NUT-2024-009', 9),
-    ('Roberto', 'Morales', 'Silva', 43, 'Masculino', 'robertoMS43', 'roberto.morales@nutricion.com', 'NUT-2024-010', 10);
+INSERT INTO Nutritionist (nutritionistName, paternalSurnameN, maternalSurnameN, ageN, genderN, nutritionistRegistration,idUser) VALUES
+    ('Ana', 'Martínez', 'García', 32, 'Femenino','NUT-2024-001', 1),
+    ('Carlos', 'Rodríguez', 'López', 45, 'Masculino', 'NUT-2024-002', 2),
+    ('María', 'Sánchez', 'Torres', 29, 'Femenino', 'NUT-2024-003', 3),
+    ('José', 'Hernández', 'Ruiz', 38, 'Masculino', 'NUT-2024-004', 4),
+    ('Laura', 'González', 'Flores', 35, 'Femenino', 'NUT-2024-005', 5),
+    ('Miguel', 'Pérez', 'Castro', 41, 'Masculino', 'NUT-2024-006', 6),
+    ('Sofia', 'Ramírez', 'Morales', 33, 'Femenino', 'NUT-2024-007', 7),
+    ('Daniel', 'Torres', 'Vargas', 37, 'Masculino', 'NUT-2024-008', 8),
+    ('Carmen', 'López', 'Mendoza', 31, 'Femenino', 'NUT-2024-009', 9),
+    ('Roberto', 'Morales', 'Silva', 43, 'Masculino', 'NUT-2024-010', 10);
     
 /*Creating a Patient table*/
     CREATE TABLE UserPatient(

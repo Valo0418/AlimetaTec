@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @RestController
-@RequestMapping("UsersPatient")
+@RequestMapping("userPatients")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 @Tag(name = "User Patient", description = "Various users patient")
 
@@ -37,7 +37,7 @@ public class UserPatientController {
     @Autowired
     UserPatientService service;
 
-    @Operation(summary = "Gnameuser patient")
+    @Operation(summary = "Get all patients")
 	@ApiResponse(responseCode = "200", description = "Found patient", content = {
 	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserPatient.class))) })
 
@@ -46,43 +46,61 @@ public class UserPatientController {
         return service.getAll();
     }
 
+    @Operation(summary = "Get a patient by his or her id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Patient found", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Patient not found", content = @Content) })
     @GetMapping("{userPatientId}")
     public ResponseEntity <UserPatient> getByUserPatientId(@PathVariable Integer userPatientId) {
         UserPatient userPatient = (UserPatient) service.getByUserPatientId(userPatientId);
         return new ResponseEntity<UserPatient>(userPatient, HttpStatus.OK);
     }
 
+    @Operation(summary = "Register a patient")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Patient registered", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
     @PostMapping
     public ResponseEntity<?> registrar(@RequestBody UserPatient userPatient) {
         service.save(userPatient);
         return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 
     }
-
+    
+    @Operation(summary = "Update a patient")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Patient updated", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
     @PutMapping("{userPatientId}")
     public ResponseEntity<?> update(@RequestBody UserPatient userPatient, @PathVariable Integer userPatientId) {
-    
             UserPatient auxUserPatient = service.getByUserPatientId(userPatientId);
             userPatient.setUserPatientId(auxUserPatient.getUserPatientId());
             service.save(userPatient);
             return new ResponseEntity<String>("Updated record", HttpStatus.OK);
-
     }
 
+    @Operation(summary = "Delete a patient")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Patient deleted", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
     @DeleteMapping("{userPatientId}")
     public ResponseEntity<?>  delete(@PathVariable Integer userPatientId) {
         service.delete(userPatientId);
 		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
 
     }
+
     @Operation(summary = "Get a patient by his or her  name")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Patient found", content = {
 			@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid Patient", content = @Content),
 			@ApiResponse(responseCode = "404", description = "User Patient not found", content = @Content) })
-
-    
 	@GetMapping ("/{userName}/name")
 	public List<UserPatient> searchbyUserName (@PathVariable String userName){
 	return service.searchbyUserName(userName);
