@@ -41,14 +41,6 @@ public class Nutritionist {
     @JsonProperty("genderN")
     private String genderN;
 
-    @Column(name ="passwordNutritionist")
-    @JsonProperty("passwordNutritionist")
-    private String passwordNutritionist;
-
-    @Column(name ="mailNutritionist")
-    @JsonProperty("mailNutritionist")
-    private String mailNutritionist;
-
     @Column(name ="nutritionistRegistration")
     @JsonProperty("nutritionistRegistration")
     private String nutritionistRegistration;
@@ -76,12 +68,6 @@ public class Nutritionist {
     public String getGenderN(){return genderN;}
     public void setGenderN(String genderN){this.genderN = genderN;}
 
-    public String getPasswordNutritionist(){return passwordNutritionist;}
-    public void setPasswordNutritionist(String passwordNutritionist){this.passwordNutritionist = passwordNutritionist;}
-
-    public String getMailNutritionist(){return mailNutritionist;}
-    public void setMailNutritionist(String mailNutritionist){this.mailNutritionist = mailNutritionist;}
-
     public String getNutritionistRegistration(){return nutritionistRegistration;}
     public void setNutritionistRegistration(String nutritionistRegistration){this.nutritionistRegistration = nutritionistRegistration;}
 
@@ -92,9 +78,5 @@ public class Nutritionist {
     public void setLogin(Login login){
         this.login = login;
     }
-   // @Override
-    //public String toString(){
-    //return idNutritionist + " :: " + nutritionistName + " :: " + paternalSurnameN + " :: " + maternalSurnameN + " :: " + ageN + " :: " +genderN + " :: " + passwordNutritionist + " :: " + mailNutritionist + " :: " + nutritionistRegistration;
-    //}
 
 }

@@ -23,23 +23,23 @@ public class ExceptionHandlerAdvice {
     }
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleException(DataIntegrityViolationException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("some of the columns are not well defined");
+        return new ResponseEntity<>("some of the columns are not well defined",HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<String> handleException(HttpMessageNotReadableException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The request body is not well defined");
+        return new ResponseEntity<>("The request body is not well defined",HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> handleException(EntityNotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The requested item is not registered");
+        return new ResponseEntity<>("The requested item is not registered",HttpStatus.NOT_FOUND);
     }
     @SuppressWarnings("null")
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationException(MethodArgumentNotValidException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Validation error: " + e.getBindingResult().getFieldError().getDefaultMessage());
+        return new ResponseEntity<>("Validation error: " + e.getBindingResult().getFieldError().getDefaultMessage(),HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid argument: " + e.getMessage());
+        return new ResponseEntity<>("Invalid argument: " + e.getMessage(),HttpStatus.BAD_REQUEST);
     }
 }
