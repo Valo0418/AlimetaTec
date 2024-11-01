@@ -96,6 +96,7 @@ INSERT INTO UserPatient (UserName, paternalSurname, maternalSurname, age, gender
 /*Creating a Goals table*/
 CREATE TABLE Goal (
     idGoal INT auto_increment,
+    nameGoal VARCHAR(255),
     descriptionGoal VARCHAR(255),
     startGoal BOOLEAN,
     endGoal BOOLEAN,
@@ -103,17 +104,17 @@ CREATE TABLE Goal (
     CONSTRAINT PRIMARY KEY idGoal_PK(idGoal)
 	);
 /*Creating a Goal table*/
-INSERT INTO Goal (descriptionGoal, startGoal, endGoal, statusGoal) VALUES
-    ('Perder 10 kg en 3 meses', true, false, 'En progreso'),
-    ('Reducir el índice de grasa corporal al 20%', true, false, 'En progreso'),
-    ('Aumentar masa muscular 5 kg', true, true, 'Completado'),
-    ('Mejorar niveles de colesterol', true, false, 'En progreso'),
-    ('Mantener dieta sin gluten por 6 meses', true, true, 'Completado'),
-    ('Reducir el consumo de sodio', true, false, 'En pausa'),
-    ('Aumentar consumo de proteínas', true, false, 'En progreso'),
-    ('Bajar niveles de azúcar en sangre', true, true, 'Completado'),
-    ('Mantener peso ideal por 1 año', false, false, 'No iniciado'),
-    ('Mejorar hábitos alimenticios', true, false, 'En progreso');
+INSERT INTO Goal (nameGoal, descriptionGoal, startGoal, endGoal, statusGoal) VALUES
+    ('Weight Loss', 'Lose 20 pounds in 4 months through diet and exercise', true, false, 'In Progress'),
+    ('Muscle Gain', 'Gain 10 pounds of lean muscle mass in 6 months', true, false, 'In Progress'),
+    ('Better Hydration', 'Drink 2 liters of water daily for 30 days', true, true, 'Completed'),
+    ('Cholesterol Reduction', 'Lower LDL cholesterol by 20% in 3 months', true, false, 'In Progress'),
+    ('Sugar Control', 'Maintain blood sugar levels within normal range for 6 months', true, false, 'In Progress'),
+    ('Healthy Eating', 'Follow Mediterranean diet plan for 2 months', true, true, 'Completed'),
+    ('Protein Intake', 'Increase daily protein intake to 100g for muscle recovery', false, false, 'Not Started'),
+    ('Meal Planning', 'Prepare weekly meal plans for 3 months', true, false, 'In Progress'),
+    ('Food Journal', 'Keep detailed food diary for 60 days', true, false, 'On Hold'),
+    ('Balanced Diet', 'Achieve balanced macronutrient ratio in daily meals', true, true, 'Completed');
     
 /*Creating a saucer table*/
 CREATE TABLE Saucer (
@@ -160,10 +161,10 @@ INSERT INTO PhysicalActivity (nameActivity, duration, caloriesBurned, intensity)
 
 CREATE TABLE Journal(
 	idJournal INT not null AUTO_INCREMENT,
-    idSaucer int not,
-	idActivity int,
-	idGoal int, 
-	idUser int,
+    idSaucer int not null,
+	idActivity int not null,
+	idGoal int not null, 
+	idUser int not null,
     constraint idJournal_PK primary key(idJournal),
     constraint idSaucer_J_FK foreign key (idSaucer) references Saucer(idSaucer),
     constraint idActivity_J_FK foreign key (idActivity) references PhysicalActivity(idActivity),
