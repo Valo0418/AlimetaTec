@@ -23,7 +23,7 @@ public class Journal {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idSaucer", referencedColumnName = "idSaucer")
-    @JsonProperty("sauser")
+    @JsonProperty("saucer")
     private Saucer saucer;
 
     @ManyToOne(cascade = CascadeType.ALL)
