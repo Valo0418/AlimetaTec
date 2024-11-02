@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,10 +58,6 @@ public class UserPatientController {
     }
 
     @Operation(summary = "Register a patient")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Patient registered", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
     @PostMapping
     public ResponseEntity<?> registrar(@RequestBody UserPatient userPatient) {
         service.save(userPatient);
@@ -71,28 +66,12 @@ public class UserPatientController {
     }
     
     @Operation(summary = "Update a patient")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Patient updated", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
     @PutMapping("{userPatientId}")
     public ResponseEntity<?> update(@RequestBody UserPatient userPatient, @PathVariable Integer userPatientId) {
             UserPatient auxUserPatient = service.getByUserPatientId(userPatientId);
             userPatient.setUserPatientId(auxUserPatient.getUserPatientId());
             service.save(userPatient);
             return new ResponseEntity<String>("Updated record", HttpStatus.OK);
-    }
-
-    @Operation(summary = "Delete a patient")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Patient deleted", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = UserPatient.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
-    @DeleteMapping("{userPatientId}")
-    public ResponseEntity<?>  delete(@PathVariable Integer userPatientId) {
-        service.delete(userPatientId);
-		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
-
     }
 
     @Operation(summary = "Get a patient by his or her  name")

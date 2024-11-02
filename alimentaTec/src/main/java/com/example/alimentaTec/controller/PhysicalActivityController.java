@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,27 +59,19 @@ public class PhysicalActivityController {
 	}
 
 	@Operation(summary = "Create a physical activities")
-	@PostMapping
-	public ResponseEntity<?> register(@RequestBody PhysicalActivity physicalActivity) {
-		service.save(physicalActivity);
-		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
+	@PostMapping()
+	public ResponseEntity<?> createActivity(@RequestBody PhysicalActivity activity) {
+		service.save(activity);
+		return new ResponseEntity<String>("Activity created", HttpStatus.CREATED);
 	}
 
 	@Operation(summary = "Update a physical activities")
 	@PutMapping("{idActivity}")
 	public ResponseEntity<?> update(@RequestBody PhysicalActivity physicalActivity, @PathVariable Integer idActivity) {
-
 		PhysicalActivity auxStudent = service.getByIdActivity(idActivity);
 		physicalActivity.setIdActivity(auxStudent.getIdActivity());
 		service.save(physicalActivity);
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
-	}
-
-	@Operation(summary = "Delete a physical activities")
-	@DeleteMapping("{idActivity}")
-	public ResponseEntity<?> delete(@PathVariable Integer idActivity) {
-		service.delete(idActivity);
-		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
 	}
 
 }

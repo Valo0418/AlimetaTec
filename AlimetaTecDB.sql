@@ -18,11 +18,11 @@ DROP TABLE IF EXISTS Login;
 
 /*Creating a Login table*/
 CREATE TABLE Login (
-    idUser INT auto_increment,
-    username VARCHAR(255) UNIQUE,
-    passwordUser VARCHAR(255),
-    email VARCHAR(255) UNIQUE,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    idUser INT auto_increment NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    passwordUser VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT PRIMARY KEY idUser_PK (idUser)
 	);
 /*Inserting data into the Login table*/

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,10 +59,6 @@ public class NutritionistController {
 	}
 
 	@Operation(summary = "Register a Nutritionist")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Nutritionist registered", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody Nutritionist nutritionist) {
 		service.save(nutritionist);
@@ -71,26 +66,12 @@ public class NutritionistController {
 	}
 	
 	@Operation(summary = "Update a Nutritionist")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Nutritionist updated", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
 	@PutMapping("{idNutritionist}")
 	public ResponseEntity<?> update(@RequestBody Nutritionist nutritionist, @PathVariable Integer idNutritionist) {
 		Nutritionist auxNutritionist = service.getByIdNutritionist(idNutritionist);
 		nutritionist.setIdNutritionist(auxNutritionist.getIdNutritionist());
 		service.save(nutritionist);
 		return new ResponseEntity<String>("Updated record", HttpStatus.OK);
-	}
-	@Operation(summary = "Delete a Nutritionist")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Nutritionist deleted", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Nutritionist.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid control number supplied", content = @Content) })
-	@DeleteMapping("{idNutritionist}")
-	public ResponseEntity<?> delete(@PathVariable Integer idNutritionist) {
-		service.delete(idNutritionist);
-		return new ResponseEntity<String>("Deleted record", HttpStatus.OK);
 	}
 
 	@Operation(summary = "Get a Nutritionist by his or her name ")

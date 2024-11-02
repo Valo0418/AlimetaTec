@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "journal")
@@ -20,23 +21,27 @@ public class Journal {
     @JsonProperty("idJournal")
     private Integer idJournal;
 
+    @NotNull(message = "Saucer cannot be null")
     @ManyToOne
-    @JoinColumn(name = "idSaucer", nullable = false)
+    @JoinColumn(name = "idSaucer")
     @JsonProperty("saucer")
     private Saucer saucer;
 
+    @NotNull(message = "Physical activity cannot be null")
     @ManyToOne
-    @JoinColumn(name = "idActivity", nullable = false)
+    @JoinColumn(name = "idActivity")
     @JsonProperty("physicalActivity")
     private PhysicalActivity physicalActivity;
 
+    @NotNull(message = "Goal cannot be null")
     @ManyToOne
-    @JoinColumn(name = "idGoal", nullable = false)
+    @JoinColumn(name = "idGoal")
     @JsonProperty("goal")
     private Goal goal;
 
+    @NotNull(message = "User cannot be null")
     @ManyToOne
-    @JoinColumn(name = "idUser", nullable = false)
+    @JoinColumn(name = "idUser")
     @JsonProperty("login")
     private Login login;
 
