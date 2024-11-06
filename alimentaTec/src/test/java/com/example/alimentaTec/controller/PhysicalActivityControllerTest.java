@@ -21,13 +21,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SaucerControllerTest {
+public class PhysicalActivityControllerTest {
     
      @Autowired
     private MockMvc mvc;
 
     @Autowired
-    private SaucerController controller;
+    private PhysicalActivityController controller;
 
 
     @Test 
@@ -37,21 +37,21 @@ public class SaucerControllerTest {
 
     @Test
     public void getAllTest() throws Exception {
-        mvc.perform(get("/saucers").accept(MediaType.APPLICATION_JSON)).andDo(print())
-                .andExpect(status().isOk())
+        mvc.perform(get("/physicalActivities").accept(MediaType.APPLICATION_JSON)).andDo(print())
+                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(greaterThan(0))));
     }
 
     @Test
     public void getByIdTest() throws Exception {
-        mvc.perform(get("/saucers/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/physicalActivities/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.idSaucer", is(2)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.idActivity", is(2)));
     }
 
     @Test
     public void getByIdNotFoundTest() throws Exception {
-        mvc.perform(get("/saucers/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/physicalActivities/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(containsString("The requested item is not registered")));
     }

@@ -21,13 +21,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SaucerControllerTest {
+public class JournalControllerTest {
     
      @Autowired
     private MockMvc mvc;
 
     @Autowired
-    private SaucerController controller;
+    private JournalController controller;
 
 
     @Test 
@@ -36,22 +36,26 @@ public class SaucerControllerTest {
     }
 
     @Test
-    public void getAllTest() throws Exception {
-        mvc.perform(get("/saucers").accept(MediaType.APPLICATION_JSON)).andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(greaterThan(0))));
+    public void getAllPaginatedTest() throws Exception {
+        mvc.perform(get("/journals/pagination")
+                .param("page", "0")
+                .param("size", "10")
+                .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(greaterThan(0))));
     }
 
     @Test
     public void getByIdTest() throws Exception {
-        mvc.perform(get("/saucers/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/journals/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.idSaucer", is(2)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.idJournal", is(2)));
     }
 
     @Test
     public void getByIdNotFoundTest() throws Exception {
-        mvc.perform(get("/saucers/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/journals/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(containsString("The requested item is not registered")));
     }

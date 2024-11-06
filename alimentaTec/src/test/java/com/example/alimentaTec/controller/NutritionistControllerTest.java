@@ -1,5 +1,6 @@
 package com.example.alimentaTec.controller;
 
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.greaterThan;
@@ -19,40 +20,40 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SaucerControllerTest {
-    
-     @Autowired
+public class NutritionistControllerTest {
+    @Autowired
     private MockMvc mvc;
 
     @Autowired
-    private SaucerController controller;
+	private NutritionistController controller;
 
-
-    @Test 
-    void contextLoads () throws Exception{
-        assertThat(controller).isNotNull();
-    }
+    @Test
+	void contextLoads() throws Exception {
+		assertThat(controller).isNotNull();
+	}
 
     @Test
     public void getAllTest() throws Exception {
-        mvc.perform(get("/saucers").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/nutritionist").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(greaterThan(0))));
     }
 
     @Test
     public void getByIdTest() throws Exception {
-        mvc.perform(get("/saucers/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/nutritionist/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.idSaucer", is(2)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.idNutritionist", is(2)));
     }
 
     @Test
     public void getByIdNotFoundTest() throws Exception {
-        mvc.perform(get("/saucers/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/nutritionist/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(containsString("The requested item is not registered")));
     }
 }
+

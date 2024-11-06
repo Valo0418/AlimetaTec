@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("Goal")
+@RequestMapping("goals")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
@@ -39,7 +39,6 @@ public class GoalController {
 	@Operation(summary = "Get all Goal")
 	@ApiResponse(responseCode = "200", description = "Found Goal", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Goal.class))) })
-
 	@GetMapping
 	public List<Goal> getAll() {
 		return service.getAll();
@@ -68,13 +67,21 @@ public class GoalController {
 	public List<Goal> buscarNameSaucer(@PathVariable String nameGoal) {
 		return service.buscarPorNombre(nameGoal);
 	}
-
+	@Operation(summary = "Register a Goal")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Goal registered", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Goal.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid Goal", content = @Content) })
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody Goal goal) {
 		service.save(goal);
 		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
 	}
-
+	@Operation(summary = "Update a Goal")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Goal updated", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Goal.class)) }),
+			@ApiResponse(responseCode = "400", description = "Invalid Goal", content = @Content) })
 	@PutMapping("{idGoal}")
 	public ResponseEntity<?> update(@RequestBody Goal goal, @PathVariable Integer idGoal) {
 		Goal auxGoal = service.getByIdGoal(idGoal);

@@ -6,27 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.alimentaTec.model.Nutritionist;
-import com.example.alimentaTec.repository.NutritionistRepository;
+import com.example.alimentaTec.repository.NutritionistRespository;
+
 import jakarta.transaction.Transactional;
+
 @Service
 @Transactional
 public class NutritionistService {
     @Autowired
-	private NutritionistRepository repo;
+    private NutritionistRespository repo;
 
-	public List<Nutritionist> getAll() {
-		return repo.findAll();
-	}
+    public List<Nutritionist> getAll() {
+        return repo.findAll();
+    }
 
-	public void save(Nutritionist Nutritionist) {
-		repo.save(Nutritionist);
-	}
+    public void save(Nutritionist nutritionist) {
+        repo.save(nutritionist);
+    }
 
-	public Nutritionist getByNutritionistId(Integer NutritionistId) {
-		return repo.findById( NutritionistId).get();
-	}
+    public Nutritionist getByIdNutritionist(Integer idNutritionist) {
+        return repo.findById(idNutritionist).get();
+    }
 
-	public void delete(Integer NutritionistId) {
-		repo.deleteById(NutritionistId);
-	}
+    public void delete(Integer idNutritionist) {
+        repo.deleteById(idNutritionist);
+    }
+    
+    public List<Nutritionist> searchbyNutritionistName(String nutritionistName){
+    return repo.searchbyNutritionistName (nutritionistName);
+    }
 }
