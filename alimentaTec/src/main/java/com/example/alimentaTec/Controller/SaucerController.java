@@ -27,9 +27,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("saucers")
+@RequestMapping("saucer")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,RequestMethod.PUT })
-@Tag(name = "Saucer", description = "Various types of saucers")
+@Tag(name = "Saucers", description = "Various types of saucers")
 
 public class SaucerController {
 

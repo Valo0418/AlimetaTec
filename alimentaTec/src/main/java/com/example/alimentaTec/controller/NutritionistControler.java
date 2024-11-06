@@ -31,7 +31,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
 		RequestMethod.PUT })
 
-@Tag(name = "Nutritionist", description = "Types of Nutritionists")
+@Tag(name = "Nutritionists", description = "Types of Nutritionists")
 
 public class NutritionistControler {
     

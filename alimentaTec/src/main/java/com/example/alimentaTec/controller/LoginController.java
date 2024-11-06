@@ -29,7 +29,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("logins")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
 
-@Tag(name = "Login", description = "Types of logins")
+@Tag(name = "Logins", description = "Types of logins")
 public class LoginController {
 
 	@Autowired

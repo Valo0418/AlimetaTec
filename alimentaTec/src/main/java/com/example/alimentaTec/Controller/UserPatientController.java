@@ -27,9 +27,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @RestController
-@RequestMapping("userPatients")
+@RequestMapping("userPatient")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
-@Tag(name = "User Patient", description = "Various users patient")
+@Tag(name = "User Patients", description = "Various users patient")
 
 public class UserPatientController {
 
