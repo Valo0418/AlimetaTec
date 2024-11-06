@@ -26,9 +26,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("login")
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
-		RequestMethod.PUT })
+@RequestMapping("logins")
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
 
 @Tag(name = "Login", description = "Types of logins")
 public class LoginController {
@@ -49,22 +48,21 @@ public class LoginController {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Login found", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Login.class)) }),
-			@ApiResponse(responseCode = "400", description = "Invalid Id supplied", content = @Content),
-			@ApiResponse(responseCode = "404", description = "Login not found", content = @Content) })
-
+			@ApiResponse(responseCode = "400", description = "Invalid Id supplied", content = @Content) })
 	@GetMapping("{idUser}")
 	public ResponseEntity<?> getByIdlogin(@PathVariable Integer idUser) {
 		Login login = service.getByIdLogin(idUser);
 		return new ResponseEntity<Login>(login, HttpStatus.OK);
 	}
 
-
+	@Operation(summary = "Register a Login")
 	@PostMapping
 	public ResponseEntity<?> register(@RequestBody Login login) {
 		service.save(login);
-		return new ResponseEntity<String>("Saved record", HttpStatus.OK);
+		return new ResponseEntity<String>("Saved record", HttpStatus.CREATED);
 	}
 
+	@Operation(summary = "Update a Login")
 	@PutMapping("{idUser}")
 	public ResponseEntity<?> update(@RequestBody Login login, @PathVariable Integer idUser) {
 		Login auxLogin = service.getByIdLogin(idUser);

@@ -37,21 +37,21 @@ public class GoalControllerTest {
 
     @Test
     public void getAllTest() throws Exception {
-        mvc.perform(get("/Goal").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/goals").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(greaterThan(0))));
     }
 
     @Test
     public void getByIdTest() throws Exception {
-        mvc.perform(get("/Goal/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/goals/2").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.idGoal", is(2)));
     }
 
     @Test
     public void getByIdNotFoundTest() throws Exception {
-        mvc.perform(get("/Goal/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
+        mvc.perform(get("/goals/0").accept(MediaType.APPLICATION_JSON)).andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(containsString("The requested item is not registered")));
     }

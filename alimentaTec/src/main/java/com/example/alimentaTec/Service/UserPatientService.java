@@ -30,5 +30,9 @@ public class UserPatientService{
 	public void delete(Integer UserPatientId) {
 		repo.deleteById(UserPatientId);
 	}
+
+	public List<UserPatient> searchbyUserName(String userName){
+    return repo.searchbyUserName(userName);
+    }
 }
 

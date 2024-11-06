@@ -2,7 +2,6 @@ package com.example.alimentaTec.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "journal")
@@ -21,23 +21,27 @@ public class Journal {
     @JsonProperty("idJournal")
     private Integer idJournal;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idSaucer", referencedColumnName = "idSaucer")
-    @JsonProperty("sauser")
+    @NotNull(message = "Saucer cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "idSaucer")
+    @JsonProperty("saucer")
     private Saucer saucer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idActivity", referencedColumnName = "idActivity")
+    @NotNull(message = "Physical activity cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "idActivity")
     @JsonProperty("physicalActivity")
     private PhysicalActivity physicalActivity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idGoal", referencedColumnName = "idGoal")
+    @NotNull(message = "Goal cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "idGoal")
     @JsonProperty("goal")
     private Goal goal;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idUser", referencedColumnName = "idUser")
+    @NotNull(message = "User cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "idUser")
     @JsonProperty("login")
     private Login login;
 

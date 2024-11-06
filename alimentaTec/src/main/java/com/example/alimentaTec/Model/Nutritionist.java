@@ -1,31 +1,58 @@
 package com.example.alimentaTec.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "nutritionist")
 public class Nutritionist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idNutritionist;
-    private String nameActivity;
+    @Column(name ="idNutritionist")
+    @JsonProperty("idNutritionist")
+    private Integer idNutritionist;
+
+    @Column(name ="nutritionistName")
+    @JsonProperty("nutritionistName")
     private String nutritionistName;
+
+    @Column(name ="paternalSurnameN")
+    @JsonProperty("paternalSurnameN")
     private String paternalSurnameN;
+
+    @Column(name ="maternalSurnameN")
+    @JsonProperty("maternalSurnameN")
     private String maternalSurnameN;
+
+    @Column(name ="ageN")
+    @JsonProperty("ageN")
     private int ageN;
+
+    @Column(name ="genderN")
+    @JsonProperty("genderN")
     private String genderN;
-    private String passwordNutritionist;
-    private String mailNutritionist;
+
+    @Column(name ="nutritionistRegistration")
+    @JsonProperty("nutritionistRegistration")
     private String nutritionistRegistration;
+
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name =" idUser", referencedColumnName=" idUser")
+    @JsonProperty(" idUser")
+    private Login login;
 
     public int getIdNutritionist(){return idNutritionist;}
     public void setIdNutritionist(int idNutritionist){this.idNutritionist = idNutritionist;}
 
-    public String getNameActivity(){return nameActivity;}
-    public void setNameActivity(String nameActivity){this.nameActivity = nameActivity;}
-    
     public String getNutritionistName(){return nutritionistName;}
     public void setNutritionistName(String nutritionistName){this.nutritionistName = nutritionistName;}
 
@@ -41,18 +68,15 @@ public class Nutritionist {
     public String getGenderN(){return genderN;}
     public void setGenderN(String genderN){this.genderN = genderN;}
 
-    public String getPasswordNutritionist(){return passwordNutritionist;}
-    public void setPasswordNutritionist(String passwordNutritionist){this.passwordNutritionist = passwordNutritionist;}
-
-    public String getMailNutritionist(){return mailNutritionist;}
-    public void setMailNutritionist(String mailNutritionist){this.mailNutritionist = mailNutritionist;}
-
     public String getNutritionistRegistration(){return nutritionistRegistration;}
     public void setNutritionistRegistration(String nutritionistRegistration){this.nutritionistRegistration = nutritionistRegistration;}
 
-    @Override
-    public String toString(){
-        return idNutritionist + " :: " + nameActivity + " :: " + nutritionistName + " :: " + paternalSurnameN + " :: " + maternalSurnameN + " :: " + ageN + " :: " +genderN + " :: " + passwordNutritionist + " :: " + mailNutritionist + " :: " + nutritionistRegistration;
+    public Login getLogin(){
+        return login;
+    }
+
+    public void setLogin(Login login){
+        this.login = login;
     }
 
 }

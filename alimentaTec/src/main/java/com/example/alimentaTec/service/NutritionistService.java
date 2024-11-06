@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.alimentaTec.model.Nutritionist;
 import com.example.alimentaTec.repository.NutritionistRespository;
+
 import jakarta.transaction.Transactional;
 
 @Service
@@ -29,5 +30,9 @@ public class NutritionistService {
 
     public void delete(Integer idNutritionist) {
         repo.deleteById(idNutritionist);
+    }
+    
+    public List<Nutritionist> searchbyNutritionistName(String nutritionistName){
+    return repo.searchbyNutritionistName (nutritionistName);
     }
 }
