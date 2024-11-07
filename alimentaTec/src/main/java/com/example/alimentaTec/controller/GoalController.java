@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.alimentaTec.model.Goal;
+import com.example.alimentaTec.model.Saucer;
 import com.example.alimentaTec.service.GoalService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,6 +37,17 @@ public class GoalController {
 
 	@Autowired
 	private GoalService service;
+
+	
+	@Operation(summary = "Get all accounts with pagination")
+	@GetMapping(value = "pagination", params = { "page", "size" })
+	public List<Goal> getAllPaginated(@RequestParam(value = "page", defaultValue = "0", required = false) int 
+	page,
+	
+	@RequestParam(value = "size", defaultValue = "10", required = false) int pageSize) {
+		List<Goal> goal = service.getAll(page, pageSize);
+		return goal;
+	}
 
 	@Operation(summary = "Get all Goal")
 	@ApiResponse(responseCode = "200", description = "Found Goal", content = {
