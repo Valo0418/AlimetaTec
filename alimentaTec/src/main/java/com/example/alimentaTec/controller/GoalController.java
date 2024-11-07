@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.alimentaTec.model.Goal;
-import com.example.alimentaTec.model.Saucer;
 import com.example.alimentaTec.service.GoalService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -49,14 +47,6 @@ public class GoalController {
 		return goal;
 	}
 
-	@Operation(summary = "Get all Goal")
-	@ApiResponse(responseCode = "200", description = "Found Goal", content = {
-			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Goal.class))) })
-	@GetMapping
-	public List<Goal> getAll() {
-		return service.getAll();
-	}
-
 	@Operation(summary = "Get a Goal by his or her Id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Goal found", content = {
@@ -76,7 +66,7 @@ public class GoalController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Goal.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid Goal", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Goal not found", content = @Content) })
-	@GetMapping("/{nameGoal}/name")
+	@GetMapping("/name/{nameGoal}")
 	public List<Goal> buscarNameSaucer(@PathVariable String nameGoal) {
 		return service.buscarPorNombre(nameGoal);
 	}
